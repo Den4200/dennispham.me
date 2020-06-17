@@ -1,0 +1,21 @@
+{% extends "portfolio/base.html" %}
+
+{% load static %}
+
+{% block title %} - Home {% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'portfolio/css/index.css' %}">
+{% endblock %}
+
+{% block body %}
+
+<br>
+<h3>I am <span id="typing"></span></h3>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+<script src="{% static 'portfolio/js/typing.js' %}"></script>
+{% endblock %}
