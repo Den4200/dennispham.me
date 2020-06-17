@@ -36,7 +36,8 @@ INTERNAL_IPS = ['localhost', '127.0.0.1']
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
-    'dennispham.me'
+    'dennispham.me',
+    'www.dennispham.me'
 ]
 
 
