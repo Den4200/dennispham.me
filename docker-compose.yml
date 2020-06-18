@@ -7,7 +7,7 @@ services:
     expose:
       - 5000
     environment:
-      DEBUG: ${DEBUG}
+      DEBUG: false
       SECRET_KEY: ${SECRET_KEY}
 
       EMAIL_USER: ${EMAIL_USER}
