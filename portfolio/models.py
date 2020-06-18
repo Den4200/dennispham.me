@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class Repository(models.Model):
+class RepositoryMetadata(models.Model):
     name = models.CharField(max_length=256)
     short_description = models.TextField(max_length=1024)
     long_description = models.TextField(max_length=4096)
