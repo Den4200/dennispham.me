@@ -8,7 +8,6 @@ class RepositoryMetadata(models.Model):
 
     language = models.CharField(max_length=64)
 
-    watchers = models.IntegerField()
     stargazers = models.IntegerField()
     forks = models.IntegerField()
 
