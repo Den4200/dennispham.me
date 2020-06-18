@@ -11,6 +11,7 @@ pre-commit = "*"
 django = "*"
 django-environ = "*"
 psycopg2 = "*"
+requests = "*"
 
 [requires]
 python_version = "3.8"
