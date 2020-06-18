@@ -6,8 +6,10 @@ class Repository(models.Model):
     short_description = models.TextField(max_length=1024)
     long_description = models.TextField(max_length=4096)
 
+    language = models.CharField(max_length=64)
+
     watchers = models.IntegerField()
     stargazers = models.IntegerField()
     forks = models.IntegerField()
 
-    recorded_at = models.DateTimeField(auto_now=True)
+    last_updated = models.DateTimeField(auto_now=True)
