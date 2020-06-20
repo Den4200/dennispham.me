@@ -53,3 +53,58 @@
   text-shadow: .1rem .1rem .5rem black;
   padding-bottom: .8rem;
 }
+
+.heading {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1.8rem;
+}
+
+.heading-underline {
+  width: 3rem;
+  height: .2rem;
+  background-color: #1ebba3;
+  margin: 0 auto .5rem;
+}
+
+.content-section {
+  padding: 30px 120px;
+}
+
+.card {
+  border-color: #cecece;
+}
+
+div.repo-headline {
+  font-size: 1.25rem;
+  margin-bottom: 8px;
+}
+
+span.repo-language-dot {
+  border-radius: 50%;
+  height: 12px;
+  width: 12px;
+  top: 1px;
+  display: inline-block;
+  position: relative;
+}
+
+span.repo-language-dot.python {
+  background-color: #3572A5;
+}
+
+span.repo-language-dot.html {
+  background-color: #e34c26;
+}
+
+span.repo-language-dot.css {
+  background-color: #563d7c;
+}
+
+span.repo-language-dot.javascript {
+  background-color: #f1e05a;
+}
+
+#repo-footer-item {
+  margin-left: 1.2rem;
+}

@@ -10,11 +10,12 @@ from portfolio.models import RepositoryMetadata
 class IndexView(View):
     template_name = 'portfolio/index.html'
 
-    github_api = "https://api.github.com/users/Den4200/repos"
+    github_api = "https://api.github.com/users/Den4200/repos?per_page=100"
     repository_cache_ttl = 3600
 
     def get(self, request):
-        return render(request, self.template_name)
+        repos = self._get_repo_data()
+        return render(request, self.template_name, {'repos': repos})
 
     def _update_repo_data(self):
         repos = RepositoryMetadata.objects.all()
@@ -22,7 +23,6 @@ class IndexView(View):
 
         for repo_data in api_data:
             full_name = repo_data['full_name']
-            print(full_name)
 
             try:
                 repo = repos.get(name=full_name)

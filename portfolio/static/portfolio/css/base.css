@@ -44,10 +44,3 @@ body {
 .navbar-dark .navbar-nav .nav-link:hover {
   color: #00ac92!important;
 }
-
-.content-section {
-  padding: 10px 20px;
-  border: 1px solid #dddddd;
-  border-radius: 3px;
-  margin-bottom: 20px;
-}
