@@ -7,7 +7,7 @@ services:
     expose:
       - 5000
     environment:
-      DEBUG: false
+      DEBUG: ${DEBUG}
       SECRET_KEY: ${SECRET_KEY}
 
       GITHUB_OAUTH_TOKEN: ${GITHUB_OAUTH_TOKEN}
