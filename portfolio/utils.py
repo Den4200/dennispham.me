@@ -13,7 +13,7 @@ def update_repo_data():
     repos = RepositoryMetadata.objects.all()
     api_data = requests.get(GITHUB_API).json()
 
-    if api_data.get('message').startswith('API rate limit exceeded'):
+    if isinstance(api_data, dict) and api_data.get('message').startswith('API rate limit exceeded'):
         return
 
     for repo_data in api_data:
