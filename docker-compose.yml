@@ -10,6 +10,8 @@ services:
       DEBUG: false
       SECRET_KEY: ${SECRET_KEY}
 
+      GITHUB_OAUTH_TOKEN: ${GITHUB_OAUTH_TOKEN}
+
       EMAIL_USER: ${EMAIL_USER}
       EMAIL_PASSWORD: ${EMAIL_PASSWORD}
 

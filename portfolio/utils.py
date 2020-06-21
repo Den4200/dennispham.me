@@ -11,7 +11,11 @@ GITHUB_API = 'https://api.github.com/users/Den4200/repos?per_page=100'
 
 def update_repo_data():
     repos = RepositoryMetadata.objects.all()
-    api_data = requests.get(GITHUB_API).json()
+
+    headers = {
+        'Authorization': f'token {settings.GITHUB_OAUTH_TOKEN}'
+    }
+    api_data = requests.get(GITHUB_API, headers=headers).json()
 
     if isinstance(api_data, dict) and api_data.get('message').startswith('API rate limit exceeded'):
         return
