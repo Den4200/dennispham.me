@@ -50,4 +50,4 @@ def get_repo_data():
     ):
         update_repo_data()
 
-    return repos
+    return repos.order_by('pk')
