@@ -66,3 +66,10 @@
   background-color: #1ebba3;
   margin: 0 auto .5rem;
 }
+
+.btn-lg {
+  border-width: medium;
+  border-radius: .4rem;
+  padding: .4rem 1rem;
+  font-size: 1.2rem;
+}

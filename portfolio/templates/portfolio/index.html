@@ -21,37 +21,41 @@
 <div class="caption text-center">
     <h1>Dennis Pham</h1>
     <h3>I am <span id="typing"></span></h3>
+    <a href="#projects" class="btn btn-outline-light btn-lg">My Projects</a>
 </div>
 
-<div class="content-section">
-    <div>
-        <h3 class="heading text-center">Projects</h3>
-        <div class="heading-underline mb-4"></div>
-    </div>
-
-    {% include 'portfolio/repos.html' %}
-
-    <div class="heading-underline mt-3 mb-3"></div>
-    <h6 class="text-center mb-5"><a class="link" href="{% url 'projects' %}">See more</a></h6>
-
-    <hr class="mb-4">
-
-    <div>
+<div id="projects" class="offset">
+    <div class="content-section">
         <div>
-            <h3 class="heading text-center mb-4">Contributions</h3>
+            <h3 class="heading text-center">Projects</h3>
+            <div class="heading-underline mb-4"></div>
         </div>
 
-        <div class="calendar mt-2 ml-5 mr-5">
-            Loading my Github contributions graph..
+        {% include 'portfolio/repos.html' %}
+
+        <div class="heading-underline mt-3 mb-3"></div>
+        <h6 class="text-center mb-5"><a class="link" href="{% url 'projects' %}">See more</a></h6>
+
+        <hr class="mb-4">
+
+        <div>
+            <div>
+                <h3 class="heading text-center mb-4">Contributions</h3>
+            </div>
+
+            <div class="calendar mt-2 ml-5 mr-5">
+                Loading my Github contributions graph..
+            </div>
         </div>
+
     </div>
-
 </div>
 
 {% endblock %}
 
 {% block scripts %}
 <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+<script src="{% static 'portfolio/js/scroll.js' %}"></script>
 <script src="{% static 'portfolio/js/typing.js' %}"></script>
 <script>
     GitHubCalendar(".calendar", "Den4200", { responsive: true });
