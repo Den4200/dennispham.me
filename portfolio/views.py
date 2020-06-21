@@ -9,4 +9,12 @@ class IndexView(View):
 
     def get(self, request):
         repos = get_repo_data()
+        return render(request, self.template_name, {'repos': repos[:6]})
+
+
+class ProjectsView(View):
+    template_name = 'portfolio/projects.html'
+
+    def get(self, request):
+        repos = get_repo_data()
         return render(request, self.template_name, {'repos': repos})

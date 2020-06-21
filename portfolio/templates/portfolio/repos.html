@@ -1,0 +1,23 @@
+<div class="row">
+    {% for repo in repos %}
+
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="repo-headline">
+                        <i class="fab fa-github" aria-hidden="true"></i>
+                        <a href="https://github.com/{{ repo.name }}"> <strong>{{ repo.name }}</strong></a>
+                    </div>
+                    <div>
+                        <p class="card-text">{{ repo.short_description }}</p>
+                        <br>
+                        <span class="repo-language-dot {{ repo.language | lower }}"></span> {{ repo.language }}
+                        <span id="repo-footer-item"><i class="fas fa-star"></i> {{ repo.stargazers }}</span>
+                        <span id="repo-footer-item"><i class="fas fa-code-branch"></i> {{ repo.forks }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {% endfor %}
+</div>

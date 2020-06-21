@@ -1,0 +1,42 @@
+{% extends "portfolio/base.html" %}
+
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'portfolio/css/projects.css' %}">
+<link rel="stylesheet" href="{% static 'portfolio/css/repos.css' %}">
+{% endblock %}
+
+{% block body %}
+
+<div class="landing">
+    <div class="home-wrap">
+        <div class="home-inner" style="background-image: url({% static 'portfolio/img/northern-lights.jpg' %});">
+        </div>
+    </div>
+</div>
+
+<div class="caption text-center">
+    <h1>My Projects</h1>
+    <a href="#repos" class="arrow">
+        <span></span>
+        <span></span>
+        <span></span>
+    </a>
+</div>
+
+<div id="repos" class="offset">
+    <div class="content-section">
+        <div>
+            <h3 class="heading text-center">Projects</h3>
+            <div class="heading-underline mb-4"></div>
+        </div>
+
+        {% include 'portfolio/repos.html' %}
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'portfolio/js/scroll.js' %}"></script>
+{% endblock %}
