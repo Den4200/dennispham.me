@@ -18,3 +18,10 @@ class ProjectsView(View):
     def get(self, request):
         repos = get_repo_data()
         return render(request, self.template_name, {'repos': repos})
+
+
+class AboutView(View):
+    template_name = 'portfolio/about.html'
+
+    def get(self, request):
+        return render(request, self.template_name)

@@ -1,0 +1,23 @@
+{% extends "portfolio/base.html" %}
+
+{% load static %}
+
+{% block title %} - About {% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'portfolio/css/about.css' %}">
+<link rel="stylesheet" href="{% static 'portfolio/css/heading.css' %}">
+{% endblock %}
+
+{% block body %}
+
+<div class="about-heading intro-type">
+    <div class="caption text-center">
+        <h1>About Me</h1>
+        <div class="heading-underline"></div>
+    </div>
+    <div class="about-inner" style="background-image: url({% static 'portfolio/img/about-top.jpg' %});"></div>
+    &nbsp;
+</div>
+
+{% endblock %}
