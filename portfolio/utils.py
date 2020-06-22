@@ -15,8 +15,14 @@ def update_repo_data():
     headers = {
         'Authorization': f'token {settings.GITHUB_OAUTH_TOKEN}'
     }
-    api_data = requests.get(GITHUB_API, headers=headers).json()
 
+    try:
+        # Make sure GitHub's API is online
+        api_data = requests.get(GITHUB_API, headers=headers).json()
+    except ConnectionError:
+        return
+
+    # Check whether or not we have exceeded the rate limit
     if isinstance(api_data, dict) and api_data.get('message').startswith('API rate limit exceeded'):
         return
 
