@@ -46,5 +46,6 @@ body {
 }
 
 .content-section {
-  padding: 30px 120px;
+  width: 90%;
+  margin: 2rem auto;
 }

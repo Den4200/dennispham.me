@@ -44,3 +44,13 @@
   text-shadow: .1rem .1rem .5rem black;
   padding-bottom: .8rem;
 }
+
+.text {
+  font-size: 1.2rem;
+}
+
+.content {
+  width: 80%;
+  max-width: 800px;
+  margin: 4rem auto;
+}
