@@ -32,11 +32,11 @@ span.repo-language-dot.javascript {
   background-color: #f1e05a;
 }
 
-span.repo.language-dot.rust {
+span.repo-language-dot.rust {
   background-color: #dea584;
 }
 
-span.repo.language-dot.typescript {
+span.repo-language-dot.typescript {
   background-color: #2b7489;
 }
 
