@@ -40,8 +40,7 @@ RUN apt-get update && apt-get install -y \
     libpq5 \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy files from context and the built binary
-COPY Rocket.toml .
+# Copy the built binary
 COPY --from=builder /app/target/release/portfolio_backend .
 
 CMD ["./portfolio_backend"]
