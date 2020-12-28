@@ -14,10 +14,20 @@ pub fn from_env() -> Config {
         .parse::<u16>()
         .expect("PORT environment variable not found.");
 
+    let mut database_config = HashMap::new();
+    let mut databases = HashMap::new();
+
+    let database_url =
+        env::var("DATABASE_URL").expect("DATABASE_URL environment variable not found.");
+
+    database_config.insert("url", Value::from(database_url));
+    databases.insert("diesel_postgres_pool", Value::from(database_config));
+
     Config::build(environment)
         .environment(environment)
         .address(address)
         .port(port)
+        .extra("databases", databases)
         .finalize()
         .unwrap()
 }

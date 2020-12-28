@@ -14,9 +14,12 @@ use rocket::fairing::AdHoc;
 use rocket::Rocket;
 
 mod config;
+mod db;
 
 pub fn rocket() -> Rocket {
     dotenv().ok();
 
-    rocket::custom(config::from_env()).mount("/", routes![])
+    rocket::custom(config::from_env())
+        .mount("/", routes![])
+        .attach(db::Conn::fairing())
 }
