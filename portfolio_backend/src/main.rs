@@ -1,3 +1,5 @@
+use portfolio_backend;
+
 fn main() {
-    println!("Hello, world!");
+    portfolio_backend::rocket().launch();
 }
