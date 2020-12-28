@@ -1,0 +1,27 @@
+version: "3.7"
+services:
+  portfolio-backend:
+    build:
+      context: portfolio_backend
+      dockerfile: Dockerfile
+    ports:
+      - 8000:8000
+    depends_on:
+      - postgres
+    environment:
+      ROCKET_ENV: development
+      DATABASE_URL: postgres://portfolio:portfolio@postgres:5432/portfolio
+
+  postgres:
+    image: postgres:latest
+    expose:
+      - 5432
+    environment:
+      POSTGRES_USER: portfolio
+      POSTGRES_PASSWORD: portfolio
+      POSTGRES_DB: portfolio
+    volumes:
+      - ./postgres_data/:/var/lib/postgresql/data/
+
+volumes:
+  postgres_data:
