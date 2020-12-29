@@ -17,6 +17,7 @@ use rocket::Rocket;
 
 mod config;
 mod db;
+mod models;
 mod schema;
 
 embed_migrations!();
