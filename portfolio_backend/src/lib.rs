@@ -18,6 +18,7 @@ use rocket::Rocket;
 mod config;
 mod db;
 mod models;
+mod routes;
 mod schema;
 
 embed_migrations!();
@@ -41,7 +42,13 @@ pub fn rocket() -> Rocket {
     dotenv().ok();
 
     rocket::custom(config::from_env())
-        .mount("/", routes![])
+        .mount(
+            "/",
+            routes![
+                routes::repository::get_repository,
+                routes::repository::get_repositories,
+            ],
+        )
         .attach(db::Conn::fairing())
         .attach(AdHoc::on_attach("Database Migrations", run_migrations))
 }
