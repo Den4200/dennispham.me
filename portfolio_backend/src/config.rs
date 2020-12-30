@@ -20,6 +20,8 @@ pub fn from_env() -> Config {
     let database_url =
         env::var("DATABASE_URL").expect("DATABASE_URL environment variable not found.");
 
+    env::var("GITHUB_TOKEN").expect("GITHUB_TOKEN environment variable not found");
+
     database_config.insert("url", Value::from(database_url));
     databases.insert("diesel_postgres_pool", Value::from(database_config));
 
