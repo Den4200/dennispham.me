@@ -11,6 +11,7 @@ services:
     environment:
       ROCKET_ENV: development
       DATABASE_URL: postgres://portfolio:portfolio@postgres:5432/portfolio
+      GITHUB_TOKEN: ${GITHUB_TOKEN}
 
   postgres:
     image: postgres:latest
