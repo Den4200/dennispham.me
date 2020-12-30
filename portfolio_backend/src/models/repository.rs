@@ -1,3 +1,4 @@
+use chrono::{Duration, NaiveDateTime, Utc};
 use diesel::pg::PgConnection;
 use diesel::prelude::*;
 use diesel::result::Error;
@@ -14,6 +15,7 @@ pub struct Repository {
     pub stargazers: Option<i32>,
     pub forks: Option<i32>,
     pub ordering: i32,
+    pub last_updated: Option<NaiveDateTime>,
 }
 
 impl Repository {

@@ -6,5 +6,6 @@ table! {
         stargazers -> Nullable<Int4>,
         forks -> Nullable<Int4>,
         ordering -> Int4,
+        last_updated -> Nullable<Timestamp>,
     }
 }
