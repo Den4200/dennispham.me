@@ -11,9 +11,9 @@ extern crate rocket;
 extern crate rocket_contrib;
 
 use dotenv::dotenv;
-
 use rocket::fairing::AdHoc;
 use rocket::Rocket;
+use rocket_cors::{AllowedOrigins, Cors, CorsOptions};
 
 mod config;
 mod db;
@@ -38,6 +38,21 @@ fn run_migrations(rocket: Rocket) -> Result<Rocket, Rocket> {
     }
 }
 
+fn create_cors() -> Cors {
+    let allowed_origins = AllowedOrigins::some_exact(&[
+        "https://dennispham.me",
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+    ]);
+
+    CorsOptions {
+        allowed_origins,
+        ..Default::default()
+    }
+    .to_cors()
+    .expect("Failed to create CORS..")
+}
+
 pub fn rocket() -> Rocket {
     dotenv().ok();
 
@@ -49,6 +64,7 @@ pub fn rocket() -> Rocket {
                 routes::repository::get_repositories,
             ],
         )
+        .attach(create_cors())
         .attach(db::Conn::fairing())
         .attach(AdHoc::on_attach("Database Migrations", run_migrations))
 }
