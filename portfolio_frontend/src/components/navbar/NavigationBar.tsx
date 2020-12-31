@@ -16,7 +16,9 @@ function NavigationBar() {
           <LinkContainer className="pr-3" to="/">
             <Nav.Link>Home</Nav.Link>
           </LinkContainer>
-          <Nav.Link className="nav-link pr-3" href="#">Projects</Nav.Link>
+          <LinkContainer className="pr-3" to="/projects">
+            <Nav.Link>Projects</Nav.Link>
+          </LinkContainer>
           <Nav.Link className="nav-link pr-3" href="#">About</Nav.Link>
         </Nav>
       </Navbar.Collapse>

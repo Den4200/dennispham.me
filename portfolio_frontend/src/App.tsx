@@ -10,9 +10,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import NavBar from './components/navbar/NavigationBar';
 
 const IndexPage = React.lazy(() => import('./pages/index/IndexPage'));
+const ProjectsPage = React.lazy(() => import('./pages/projects/ProjectsPage'));
 
 const routes = [
   { path: '/', Component: IndexPage },
+  { path: '/projects', Component: ProjectsPage },
 ]
 
 function App() {

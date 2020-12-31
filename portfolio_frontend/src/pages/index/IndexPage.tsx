@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Typed from 'react-typed';
 
 import Repositories from '../../components/repositories/Repositories';
+import '../../heading.css';
 import './index.css';
 import landingBackground from './landing-bg.jpg';
 
@@ -44,7 +45,7 @@ function IndexPage() {
             <Repositories amount={6} />
 
             <div className="heading-underline mt-3 mb-3"></div>
-            <h6><Link className="text-center" to="/">See more</Link></h6>
+            <h6><Link className="text-center" to="/projects">See more</Link></h6>
           </div>
         </div>
       </div>
