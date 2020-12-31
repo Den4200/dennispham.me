@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 import './navbar.css';
 
-function NavigationBar() {
+function NavBar() {
   return (
     <Navbar collapseOnSelect bg="dark-opaque" variant="dark" fixed="top" expand="md">
       <Navbar.Brand><Link className="navbar-brand-link" to="/">Dennis Pham</Link></Navbar.Brand>
@@ -26,4 +26,4 @@ function NavigationBar() {
   )
 }
 
-export default NavigationBar;
+export default NavBar;

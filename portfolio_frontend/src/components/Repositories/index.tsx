@@ -7,7 +7,7 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faCodeBranch, faStar } from '@fortawesome/free-solid-svg-icons';
 
 import { getRepositories, Repository } from '../../api';
-import Loading from '../loading/Loading';
+import Loading from '../Loading';
 import './repositories.css';
 
 interface RepositoriesParams {

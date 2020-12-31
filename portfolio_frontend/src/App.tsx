@@ -7,8 +7,8 @@ import {
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import Loading from './components/loading/Loading';
-import NavBar from './components/navbar/NavigationBar';
+import Loading from './components/Loading';
+import NavBar from './components/NavBar';
 
 const IndexPage = React.lazy(() => import('./pages/index/IndexPage'));
 const ProjectsPage = React.lazy(() => import('./pages/projects/ProjectsPage'));

@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Typed from 'react-typed';
 
-import Repositories from '../../components/repositories/Repositories';
+import Repositories from '../../components/Repositories';
 import '../../heading.css';
 import './index.css';
 import landingBackground from './landing-bg.jpg';

@@ -1,4 +1,4 @@
-import Repositories from '../../components/repositories/Repositories';
+import Repositories from '../../components/Repositories';
 import '../../heading.css';
 import './projects.css';
 import northernLights from './northern-lights.jpg';
