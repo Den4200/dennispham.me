@@ -4,6 +4,8 @@ const ApiClient = axios.create({
     baseURL: "https://dennispham.me/api/"
 })
 
+export const GITHUB_USERNAME = "Den4200";
+
 export interface Repository {
     name: string,
     description: string,
@@ -29,4 +31,36 @@ export async function getRepositories(): Promise<Repository[]> {
 
     repos.sort((repoA: Repository, repoB: Repository) => (repoA.ordering > repoB.ordering) ? 1 : -1)
     return repos;
+}
+
+export interface GitHubYearRange {
+    start: string,
+    end: string
+}
+
+export interface GitHubYear {
+    year: string,
+    total: number,
+    range: GitHubYearRange
+}
+
+export interface GitHubContribution {
+    date: string,
+    count: number,
+    color: string,
+    intensity: number
+}
+
+export interface GitHubContributions {
+    years: GitHubYear[],
+    contributions: GitHubContribution[]
+}
+
+export async function getGitHubContributions(): Promise<GitHubContributions> {
+    let cors_proxy_url = "https://cors.f1recloud.workers.dev/"
+    let contrib_api_url = `https://github-contributions.now.sh/api/v1/${GITHUB_USERNAME}`
+
+    let data = (await axios.get(`${cors_proxy_url}?${contrib_api_url}`)).data;
+
+    return data as GitHubContributions;
 }
