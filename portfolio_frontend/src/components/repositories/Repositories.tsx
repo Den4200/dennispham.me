@@ -7,6 +7,7 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faCodeBranch, faStar } from '@fortawesome/free-solid-svg-icons';
 
 import { getRepositories, Repository } from '../../api';
+import Loading from '../loading/Loading';
 import './repositories.css';
 
 interface RepositoriesParams {
@@ -25,7 +26,7 @@ function Repositories(params: RepositoriesParams) {
 
   if (!repositories) {
     return (
-      <div>Loading..</div>
+      <Loading />
     );
   }
 

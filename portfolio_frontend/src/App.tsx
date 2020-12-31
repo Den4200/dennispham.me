@@ -7,6 +7,7 @@ import {
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import Loading from './components/loading/Loading';
 import NavBar from './components/navbar/NavigationBar';
 
 const IndexPage = React.lazy(() => import('./pages/index/IndexPage'));
@@ -25,7 +26,7 @@ function App() {
       <Switch>
         {routes.map(({path, Component}) => (
           <Route exact key={path} path={path}>
-            <Suspense fallback={<div>Loading..</div>}>
+            <Suspense fallback={<Loading />}>
               <Component />
             </Suspense>
           </Route>
