@@ -42,7 +42,8 @@ function Repositories(params: RepositoriesParams) {
               <Card.Body>
                 <div className="repo-headline">
                   <FontAwesomeIcon icon={faGithub} />
-                  <a href={`https://github.com/${repo.name}`}>{repo.name}</a>
+                  &nbsp;
+                  <a href={`https://github.com/${repo.name}`}><strong>{repo.name}</strong></a>
                 </div>
 
                 <div>
