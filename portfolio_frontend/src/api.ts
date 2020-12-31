@@ -15,9 +15,9 @@ export interface Repository {
 }
 
 export async function getRepositories(): Promise<Repository[]> {
-    let data = (await ApiClient.get("repositories")).data;
-
-    return data.map((repository: any) => {
+    let data = (await ApiClient.get("repositories")).data
+    
+    let repos = data.map((repository: any) => {
         let lastUpdated = repository.last_updated;
         delete repository.last_updated;
 
@@ -26,4 +26,7 @@ export async function getRepositories(): Promise<Repository[]> {
             ...repository
         } as Repository;
     });
+
+    repos.sort((repoA: Repository, repoB: Repository) => (repoA.ordering > repoB.ordering) ? 1 : -1)
+    return repos;
 }
