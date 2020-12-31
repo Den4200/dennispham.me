@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
+import { Link as ScrollLink } from "react-scroll";
 import Typed from 'react-typed';
 
 import Repositories from '../../components/Repositories';
@@ -33,7 +34,9 @@ function IndexPage() {
             />
           </h3>
 
-          <Button href="#projects" variant="outline-light" size="lg">My Projects</Button>
+          <ScrollLink to="projects" smooth={true}>
+            <Button variant="outline-light" size="lg">My Projects</Button>
+          </ScrollLink>
       </div>
 
       <div id="projects" className="offset">

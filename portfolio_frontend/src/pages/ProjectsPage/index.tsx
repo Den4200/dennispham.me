@@ -1,3 +1,5 @@
+import { Link as ScrollLink } from "react-scroll";
+
 import Repositories from '../../components/Repositories';
 import '../../heading.css';
 import './projects.css';
@@ -15,11 +17,11 @@ function ProjectsPage() {
 
       <div className="caption text-center">
         <h1>My Projects</h1>
-        <a href="#projects" className="arrow">
+        <ScrollLink to="projects" className="arrow" smooth={true}>
           <span></span>
           <span></span>
           <span></span>
-        </a>
+        </ScrollLink>
       </div>
 
       <div id="projects" className="offset">
