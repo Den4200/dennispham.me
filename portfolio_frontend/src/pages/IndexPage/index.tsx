@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import { Link as ScrollLink } from "react-scroll";
 import Typed from 'react-typed';
 
+import GitHubContributionsChart from '../../components/GitHubContributionsChart';
 import Repositories from '../../components/Repositories';
 import '../../heading.css';
 import './index.css';
@@ -49,6 +50,14 @@ function IndexPage() {
 
             <div className="heading-underline mt-3 mb-3"></div>
             <h6><Link className="text-center" to="/projects">See more</Link></h6>
+
+            <hr className="mb-4" />
+
+            <div>
+              <h3 className="heading text-center mb-4">Contributions</h3>
+
+              <GitHubContributionsChart />
+            </div>
           </div>
         </div>
       </div>
