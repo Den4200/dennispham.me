@@ -10,8 +10,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Loading from './components/Loading';
 import NavBar from './components/NavBar';
 
-const IndexPage = React.lazy(() => import('./pages/index/IndexPage'));
-const ProjectsPage = React.lazy(() => import('./pages/projects/ProjectsPage'));
+const IndexPage = React.lazy(() => import('./pages/IndexPage'));
+const ProjectsPage = React.lazy(() => import('./pages/ProjectsPage'));
 
 const routes = [
   { path: '/', Component: IndexPage },
