@@ -1,6 +1,7 @@
 import Button from 'react-bootstrap/Button';
 import Typed from 'react-typed';
 
+import Repositories from '../../components/repositories/Repositories';
 import './index.css';
 import landingBackground from './landing-bg.jpg';
 
@@ -30,7 +31,18 @@ function IndexPage() {
             />
           </h3>
 
-          <Button href="#" variant="outline-light" size="lg">My Projects</Button>
+          <Button href="#projects" variant="outline-light" size="lg">My Projects</Button>
+      </div>
+
+      <div id="projects" className="offset">
+        <div className="content-section">
+          <div>
+            <h3 className="heading text-center">Projects</h3>
+            <div className="heading-underline mb-4"></div>
+
+            <Repositories amount={6} />
+          </div>
+        </div>
       </div>
     </div>
   )
