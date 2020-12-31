@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Typed from 'react-typed';
 
@@ -41,6 +42,9 @@ function IndexPage() {
             <div className="heading-underline mb-4"></div>
 
             <Repositories amount={6} />
+
+            <div className="heading-underline mt-3 mb-3"></div>
+            <h6><Link className="text-center" to="/">See more</Link></h6>
           </div>
         </div>
       </div>
