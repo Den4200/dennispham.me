@@ -12,10 +12,12 @@ import NavBar from './components/NavBar';
 
 const IndexPage = React.lazy(() => import('./pages/IndexPage'));
 const ProjectsPage = React.lazy(() => import('./pages/ProjectsPage'));
+const AboutPage = React.lazy(() => import('./pages/AboutPage'));
 
 const routes = [
   { path: '/', Component: IndexPage },
   { path: '/projects', Component: ProjectsPage },
+  { path: '/about', Component: AboutPage },
 ]
 
 function App() {

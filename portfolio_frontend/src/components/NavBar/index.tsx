@@ -19,7 +19,9 @@ function NavBar() {
           <LinkContainer className="pr-3" to="/projects">
             <Nav.Link>Projects</Nav.Link>
           </LinkContainer>
-          <Nav.Link className="nav-link pr-3" href="#">About</Nav.Link>
+          <LinkContainer className="pr-3" to="/about">
+            <Nav.Link>About</Nav.Link>
+          </LinkContainer>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
