@@ -4,6 +4,9 @@ const ApiClient = axios.create({
     baseURL: "https://dennispham.me/api/"
 })
 
+const CORS_PROXY = "https://cors.f1recloud.workers.dev/";
+const GITHUB_CONTRIBS_API = "https://github-contributions.now.sh/api/v1/";
+
 export const GITHUB_USERNAME = "Den4200";
 
 export interface Repository {
@@ -57,10 +60,6 @@ export interface GitHubContributions {
 }
 
 export async function getGitHubContributions(): Promise<GitHubContributions> {
-    let cors_proxy_url = "https://cors.f1recloud.workers.dev/"
-    let contrib_api_url = `https://github-contributions.now.sh/api/v1/${GITHUB_USERNAME}`
-
-    let data = (await axios.get(`${cors_proxy_url}?${contrib_api_url}`)).data;
-
-    return data as GitHubContributions;
+    let resp = await axios.get(`${CORS_PROXY}?${GITHUB_CONTRIBS_API}${GITHUB_USERNAME}`);
+    return resp.data as GitHubContributions;
 }
