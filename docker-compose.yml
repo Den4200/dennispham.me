@@ -24,5 +24,14 @@ services:
     volumes:
       - ./postgres_data/:/var/lib/postgresql/data/
 
+  portfolio-frontend:
+    build:
+      context: portfolio_frontend
+      dockerfile: Dockerfile
+    ports:
+      - 3000:80
+    depends_on:
+      - portfolio-backend
+
 volumes:
   postgres_data:
