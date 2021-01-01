@@ -18,5 +18,5 @@ FROM nginx:latest
 # Copy react code
 COPY --from=builder /usr/src/app/build /usr/share/nginx/html
 
-ENTRYPOINT ["nginx"]
-CMD ["-g", "daemon off;"]
+# Copy nginx config
+COPY ./nginx.conf /etc/nginx/conf.d/default.conf
