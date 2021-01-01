@@ -43,3 +43,7 @@ span.repo-language-dot.rust {
 span.repo-language-dot.typescript {
   background-color: #2b7489;
 }
+
+span.repo-language-dot.assembly {
+  background-color: #6e4c13;
+}
