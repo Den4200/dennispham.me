@@ -58,7 +58,7 @@ pub fn rocket() -> Rocket {
 
     rocket::custom(config::from_env())
         .mount(
-            "/",
+            "/api",
             routes![
                 routes::repository::get_repository,
                 routes::repository::get_repositories,
