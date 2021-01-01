@@ -1,0 +1,45 @@
+.card {
+  border-color: #cecece;
+}
+
+.repo-headline {
+  font-size: 1.25rem;
+  margin-bottom: 8px;
+}
+
+.repo-headline a {
+  color: #007bff;
+}
+
+span.repo-language-dot {
+  border-radius: 50%;
+  height: 12px;
+  width: 12px;
+  top: 1px;
+  display: inline-block;
+  position: relative;
+}
+
+span.repo-language-dot.python {
+  background-color: #3572A5;
+}
+
+span.repo-language-dot.html {
+  background-color: #e34c26;
+}
+
+span.repo-language-dot.css {
+  background-color: #563d7c;
+}
+
+span.repo-language-dot.javascript {
+  background-color: #f1e05a;
+}
+
+span.repo-language-dot.rust {
+  background-color: #dea584;
+}
+
+span.repo-language-dot.typescript {
+  background-color: #2b7489;
+}

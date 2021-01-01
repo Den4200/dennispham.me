@@ -1,0 +1,26 @@
+.about-heading {
+  line-height: 80px;
+  text-align: center;
+  padding: 100px 0px 100px 0px;
+  position: relative;
+}
+
+.about-inner {
+  background-repeat: repeat;
+  background-size: cover;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  width: 100%;
+  z-index: -10;
+}
+
+.text {
+  font-size: 1.2rem;
+}
+
+.content {
+  width: 80%;
+  max-width: 800px;
+  margin: 4rem auto;
+}

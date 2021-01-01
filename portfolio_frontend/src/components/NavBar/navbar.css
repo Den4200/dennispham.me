@@ -1,0 +1,31 @@
+.offset:before {
+  display: block;
+  content: "";
+  height: 3.6rem;
+  margin-top: -3.6rem;
+}
+
+.navbar {
+  font-weight: 900;
+  font-size: .9rem;
+  letter-spacing: .1rem;
+}
+
+.bg-dark-opaque {
+  background-color: rgba(0, 0, 0, 0.6)!important;
+}
+
+.navbar-brand-link, .navbar-brand-link:hover {
+  text-decoration: none;
+  color: white;
+}
+
+.nav-link {
+  color: white!important;
+  padding-top: .4rem;
+  transition: all 0.3s ease 0s;
+}
+
+.nav-link:hover {
+  color: #00ac92!important;
+}

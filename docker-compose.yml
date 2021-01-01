@@ -1,61 +1,37 @@
 version: "3.7"
 services:
-  uwsgi:
+  portfolio-backend:
     build:
-      context: .
-      dockerfile: scripts/Dockerfile
-    expose:
-      - 5000
-    environment:
-      DEBUG: ${DEBUG}
-      SECRET_KEY: ${SECRET_KEY}
-
-      GITHUB_OAUTH_TOKEN: ${GITHUB_OAUTH_TOKEN}
-
-      EMAIL_USER: ${EMAIL_USER}
-      EMAIL_PASSWORD: ${EMAIL_PASSWORD}
-
-      EMAIL_HOST: ${EMAIL_HOST}
-      EMAIL_PORT: ${EMAIL_PORT}
-
-      ADMIN_NAME: ${ADMIN_NAME}
-      ADMIN_EMAIL: ${ADMIN_EMAIL}
-
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-
-      POSTGRES_DB: ${POSTGRES_DB}
-      POSTGRES_HOST: ${POSTGRES_HOST}
-      POSTGRES_PORT: ${POSTGRES_PORT}
-    restart: always
-    volumes:
-      - ./:/app/
+      context: portfolio_backend
+      dockerfile: Dockerfile
+    ports:
+      - 8000:8000
     depends_on:
       - postgres
-
-  nginx:
-    build:
-      context: .
-      dockerfile: scripts/nginx/Dockerfile
-    ports:
-      - 443:443
-    volumes:
-      - ./static/:/app/static/
-      - ./media/:/app/media/
-      - /etc/ssl/:/etc/ssl:ro
-    depends_on:
-      - uwsgi
+    environment:
+      ROCKET_ENV: development
+      DATABASE_URL: postgres://portfolio:portfolio@postgres:5432/portfolio
+      GITHUB_TOKEN: ${GITHUB_TOKEN}
 
   postgres:
     image: postgres:latest
-    expose:
-    - 5432
+    ports:
+      - 5432:5432
     environment:
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: portfolio
+      POSTGRES_PASSWORD: portfolio
+      POSTGRES_DB: portfolio
     volumes:
       - ./postgres_data/:/var/lib/postgresql/data/
+
+  portfolio-frontend:
+    build:
+      context: portfolio_frontend
+      dockerfile: Dockerfile
+    ports:
+      - 3000:80
+    depends_on:
+      - portfolio-backend
 
 volumes:
   postgres_data:
