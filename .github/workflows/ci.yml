@@ -35,3 +35,9 @@ jobs:
         dockerfile: ./portfolio_frontend/Dockerfile
         tag_with_sha: true
         tag_with_ref: true
+
+    - name: Deployment
+      uses: zzzze/webhook-trigger@48de98d2c0c5f90638946567d144ebe9da0f2de4
+      with:
+        webhook_url: ${{ secrets.DEPLOYMENT_WEBHOOK }}
+        options: ${{ secrets.DEPLOYMENT_OPTIONS }}
