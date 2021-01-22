@@ -46,21 +46,7 @@ impl<'a, 'r> FromRequest<'a, 'r> for UserToken {
     ) -> request::Outcome<Self, status::Custom<Json<Response>>> {
         let conn = request.guard::<Conn>().unwrap();
 
-        if let Some(auth_header) = request.headers().get_one("Authorization") {
-            let auth_str = auth_header.to_string();
-
-            if auth_str.starts_with("Bearer") {
-                let token = auth_str[6..].trim();
-
-                if let Ok(token_data) = decode_token(token.to_string()) {
-                    if verify_token(&token_data, &conn) {
-                        return Outcome::Success(token_data.claims);
-                    }
-                }
-            }
-        }
-
-        Outcome::Failure((
+        let failure = Outcome::Failure((
             Status::BadRequest,
             status::Custom(
                 Status::Unauthorized,
@@ -69,7 +55,21 @@ impl<'a, 'r> FromRequest<'a, 'r> for UserToken {
                     data: serde_json::to_value("").unwrap(),
                 })
             )
-        ))
+        ));
+
+        let cookies = request.cookies();
+        match cookies.get("jwt").map(|cookie| cookie.value()) {
+            Some(token) => {
+                if let Ok(token_data) = decode_token(token.to_string()) {
+                    if verify_token(&token_data, &conn) {
+                        return Outcome::Success(token_data.claims);
+                    }
+                }
+
+                failure
+            },
+            None => failure
+        }
     }
 }
 
