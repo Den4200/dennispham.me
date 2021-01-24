@@ -25,7 +25,7 @@ pub struct Repository {
 }
 
 #[derive(Debug, Deserialize)]
-pub struct NewRepository {
+pub struct RepositoryDTO {
     pub name: String,
 }
 
@@ -40,7 +40,7 @@ pub struct RepositoryStats {
 }
 
 impl Repository {
-    pub fn new(new_repo: NewRepository, conn: &PgConnection) -> Result<Repository, DieselError> {
+    pub fn new(new_repo: RepositoryDTO, conn: &PgConnection) -> Result<Repository, DieselError> {
         let current_ordering = repositories::table
             .select(dsl::max(repositories::ordering))
             .first::<Option<i32>>(conn);
@@ -64,12 +64,16 @@ impl Repository {
             .get_result(conn)
     }
 
-    pub fn get(name: &str, conn: &PgConnection) -> Result<Repository, diesel::result::Error> {
+    pub fn get(name: &str, conn: &PgConnection) -> Result<Repository, DieselError> {
         repositories::table.find(name).first::<Repository>(conn)
     }
 
     pub fn get_all(conn: &PgConnection) -> Vec<Repository> {
         repositories::table.load::<Repository>(conn).unwrap()
+    }
+
+    pub fn delete(name: &str, conn: &PgConnection) -> bool {
+        diesel::delete(repositories::table.find(name)).execute(conn).is_ok()
     }
 
     pub fn update_stats(name: &str, other: &RepositoryStats, conn: &PgConnection) -> bool {
