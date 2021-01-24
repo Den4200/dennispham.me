@@ -44,8 +44,8 @@ fn run_migrations(rocket: Rocket) -> Result<Rocket, Rocket> {
 fn create_cors() -> Cors {
     let allowed_origins = AllowedOrigins::some_exact(&[
         "https://dennispham.me",
-        "http://localhost:3000",
-        "http://127.0.0.1:3000",
+        "http://localhost:8000",
+        "http://127.0.0.1:8000",
     ]);
 
     CorsOptions {
