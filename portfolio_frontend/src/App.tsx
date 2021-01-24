@@ -14,20 +14,23 @@ const IndexPage = React.lazy(() => import('./pages/IndexPage'));
 const ProjectsPage = React.lazy(() => import('./pages/ProjectsPage'));
 const AboutPage = React.lazy(() => import('./pages/AboutPage'));
 
+const LoginPage = React.lazy(() => import('./pages/LoginPage'));
+
 const routes = [
   { path: '/', Component: IndexPage },
   { path: '/projects', Component: ProjectsPage },
   { path: '/about', Component: AboutPage },
+  { path: '/admin/login', Component: LoginPage },
 ]
 
 function App() {
   return (
     <Router>
-      <NavBar />
-
       <Switch>
         {routes.map(({path, Component}) => (
           <Route exact key={path} path={path}>
+            {(!path.startsWith("/admin")) ? <NavBar /> : ""}
+
             <Suspense fallback={<Loading />}>
               <Component />
             </Suspense>

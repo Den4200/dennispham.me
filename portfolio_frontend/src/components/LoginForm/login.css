@@ -1,0 +1,122 @@
+.login-form {
+  background: #363940;
+  border-radius: 6px;
+  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2);
+  max-width: 90vw;
+  padding: 32px;
+  width: 472px;
+}
+
+.centering-wrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+#primary-header {
+  color: white;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 30px; 
+  margin-bottom: 8px;
+}
+
+#secondary-header {
+  color: #a2a3a7;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.input-position {
+  margin-top: 20px;
+}
+
+.form-group { 
+  text-align: left;
+  width: 100%;
+}
+
+.input-placeholder {
+  color: #919296;
+  cursor: default;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 16px;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.form-style {
+  background: #323338;
+  border: 1px solid #282a2e;
+  border-radius: 3px;
+  color: #c4c3ca;
+  font-size: 16px;
+  font-weight: 500;
+  height: 40px;
+  letter-spacing: 0.5px;
+  line-height: 22px;
+  margin-bottom: 8px;
+  max-width: 80vw;
+  padding: 10px;
+  position: relative;
+  outline: none;
+  transition: border-color 0.2s linear;
+  width: 414px;
+}
+
+.form-style:hover {
+  border-color: black;
+}
+
+.form-style:focus,
+.form-style:active {
+  border-color: #7289DA;
+}
+
+.form-style:active .input-placeholder {
+  color: #7289DA;
+}
+
+.login-btn {
+  align-items: center;
+  background: #7289DA;
+  border: 0;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 14px;
+  font-weight: 600;
+  height: 44px;
+  justify-content: center;
+  letter-spacing: 0.8px;
+  max-width: 80vw;
+  outline: none;
+  text-align: center;
+  transition: all 200ms linear;
+  width: 414px;
+}
+
+.login-btn:hover {
+  background: #677bc4;
+  box-shadow: 0 8px 24px 0 rgba(16, 40, 112, 0.2);
+  color: white;
+  text-decoration: none;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(10px);
+  }
+  50% {
+    transform: translateX(-10px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}

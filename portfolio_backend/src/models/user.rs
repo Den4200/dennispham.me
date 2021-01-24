@@ -56,28 +56,28 @@ impl User {
     }
 
     pub fn login(login: LoginDTO, conn: &PgConnection) -> Option<LoginInfoDTO> {
-        let user = users::table
-            .filter(users::username.eq(&login.username))
-            .get_result::<User>(conn)
-            .unwrap();
+        match Self::get(&login.username, conn) {
+            Some(user) => {
+                if !user.password_hash.is_empty() && verify(&login.password, &user.password_hash).unwrap() {
+                    if let Some(login_history) = LoginHistory::create(&user.username, conn) {
+                        if !LoginHistory::save(login_history, conn) {
+                            return None;
+                        }
 
-        if !user.password_hash.is_empty() && verify(&login.password, &user.password_hash).unwrap() {
-            if let Some(login_history) = LoginHistory::create(&user.username, conn) {
-                if !LoginHistory::save(login_history, conn) {
-                    return None;
+                        let login_session = User::generate_login_session();
+                        User::update_login_session(&user.username, &login_session, conn);
+        
+                        return Some(LoginInfoDTO {
+                            username: user.username,
+                            login_session: login_session
+                        });
+                    }
                 }
 
-                let login_session = User::generate_login_session();
-                User::update_login_session(&user.username, &login_session, conn);
-
-                return Some(LoginInfoDTO {
-                    username: user.username,
-                    login_session: login_session
-                });
-            }
+                None
+            },
+            None => None
         }
-
-        None
     }
 
     pub fn is_valid_login_session(user_token: &UserToken, conn: &PgConnection) -> bool {
