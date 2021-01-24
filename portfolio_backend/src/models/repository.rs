@@ -1,16 +1,18 @@
 use std::env;
 
 use chrono::{Duration, NaiveDateTime, Utc};
+use diesel::dsl;
 use diesel::pg::PgConnection;
 use diesel::prelude::*;
+use diesel::result::Error as DieselError;
 use futures::prelude::*;
 use hubcaps::{Credentials, Github};
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 use tokio::runtime::Runtime;
 
 use crate::schema::repositories;
 
-#[derive(Debug, Insertable, Serialize, Queryable)]
+#[derive(Debug, Default, Insertable, Serialize, Queryable)]
 #[table_name = "repositories"]
 pub struct Repository {
     pub name: String,
@@ -20,6 +22,11 @@ pub struct Repository {
     pub forks: Option<i32>,
     pub ordering: i32,
     pub last_updated: Option<NaiveDateTime>,
+}
+
+#[derive(Debug, Deserialize)]
+pub struct NewRepository {
+    pub name: String,
 }
 
 #[derive(Debug, AsChangeset)]
@@ -33,6 +40,30 @@ pub struct RepositoryStats {
 }
 
 impl Repository {
+    pub fn new(new_repo: NewRepository, conn: &PgConnection) -> Result<Repository, DieselError> {
+        let current_ordering = repositories::table
+            .select(dsl::max(repositories::ordering))
+            .first::<Option<i32>>(conn);
+
+        let ordering = match current_ordering {
+            Ok(order) => Ok(match order {
+                Some(pos) => pos + 1,
+                None => 1,
+            }),
+            Err(err) => Err(err),
+        }?;
+
+        let repo = Repository {
+            name: new_repo.name,
+            ordering: ordering,
+            ..Default::default()
+        };
+
+        diesel::insert_into(repositories::table)
+            .values(repo)
+            .get_result(conn)
+    }
+
     pub fn get(name: &str, conn: &PgConnection) -> Result<Repository, diesel::result::Error> {
         repositories::table.find(name).first::<Repository>(conn)
     }
