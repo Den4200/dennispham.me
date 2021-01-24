@@ -1,0 +1,36 @@
+.login-wrapper {
+  background: #303136;
+  display: grid;
+  height: 100vh;
+  place-items: center;
+  width: 100vw;
+}
+
+.back-btn {
+  background: #7289DA;
+  border-radius: 50%;
+  left: 0;
+  margin: 24px;
+  padding: 14px;
+  position: absolute;
+  top: 0;
+  transition: background 0.2s linear;
+}
+
+.back-btn:hover {
+  background: #677bc4;
+}
+
+.back-icon {
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  display: block;
+  padding: 8px;
+  transform: rotate(135deg) translate(-2px, -3px);
+}
+
+@media (max-width: 480px) {
+  .back-btn {
+    margin: 16px;
+  }
+}
