@@ -60,3 +60,16 @@ export async function getGitHubContributions(): Promise<GitHubContributions> {
     let resp = await ApiClient.get(`contributions/${GITHUB_USERNAME}`);
     return resp.data as GitHubContributions;
 }
+
+export async function login(username: string, password: string): Promise<boolean> {
+    try {
+        let resp = await ApiClient.post("auth/login", {
+            username: username,
+            password: password,
+        });
+
+        return resp.status === 200;
+    } catch {
+        return false;
+    }
+}
