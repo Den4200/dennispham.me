@@ -5,8 +5,8 @@ use rocket_contrib::json::{Json, JsonValue};
 use crate::auth::UserToken;
 use crate::db::Conn;
 use crate::models::repository::{
-    NewRepository,
     Repository,
+    RepositoryDTO,
     update_repositories,
 };
 
@@ -38,7 +38,7 @@ pub fn get_repository(
 
 #[post("/repository", format = "json", data = "<new_repository>")]
 pub fn post_resository(
-    new_repository: Json<NewRepository>,
+    new_repository: Json<RepositoryDTO>,
     token: Result<UserToken, Status>,
     conn: Conn
 ) -> Result<Json<Repository>, Status> {
@@ -46,7 +46,7 @@ pub fn post_resository(
         return Err(err);
     }
 
-    let new_repo = NewRepository {
+    let new_repo = RepositoryDTO {
         ..new_repository.into_inner()
     };
 
@@ -69,5 +69,21 @@ pub fn post_resository(
             },
             _ => Status::InternalServerError,
         })
+    }
+}
+
+#[delete("/repository", format = "json", data = "<repository>")]
+pub fn delete_repository(
+    repository: Json<RepositoryDTO>,
+    token: Result<UserToken, Status>,
+    conn: Conn
+) -> Status {
+    if let Err(err) = token {
+        return err;
+    }
+
+    match Repository::delete(repository.name.as_str(), &conn) {
+        true => Status::Ok,
+        false => Status::InternalServerError,
     }
 }

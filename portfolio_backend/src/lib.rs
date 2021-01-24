@@ -87,6 +87,7 @@ pub fn rocket() -> Rocket {
                 routes::repository::get_repositories,
                 routes::repository::get_repository,
                 routes::repository::post_resository,
+                routes::repository::delete_repository,
             ],
         )
         .attach(create_cors())
