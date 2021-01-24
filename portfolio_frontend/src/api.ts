@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const ApiClient = axios.create({
-    baseURL: "https://dennispham.me/api/"
+    baseURL: "/api"
 })
 
 export const GITHUB_USERNAME = "Den4200";
