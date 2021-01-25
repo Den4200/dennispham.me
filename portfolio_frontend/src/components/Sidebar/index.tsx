@@ -10,7 +10,7 @@ const Sidebar = () => (
         <div className="Sidebar-icon-wrapper">
           <img src={logo} alt="logo" className="Sidebar-icon" />
         </div>
-        <h1 className="Sidebar-title">Administrator</h1>
+        <h1 className="Sidebar-title">Admin</h1>
       </div>
 
       <nav className="Sidebar-nav">
