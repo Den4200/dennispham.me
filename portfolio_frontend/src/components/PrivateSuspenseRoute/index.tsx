@@ -2,10 +2,9 @@ import React, { Suspense } from 'react';
 import { Redirect, Route } from 'react-router-dom';
 
 import { isAuthenticated } from '../../api';
-import Loading from '../Loading';
 
-const PrivateSuspenseRoute = ({ component, ...rest }: any) => (
-  <Suspense fallback={<Loading />}>
+const PrivateSuspenseRoute = ({ component, fallback, ...rest }: any) => (
+  <Suspense fallback={fallback}>
     <Route {...rest} render={props => (
       isAuthenticated()
         ? React.createElement(component, props)

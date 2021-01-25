@@ -44,7 +44,13 @@ function App() {
         ))}
 
         {adminRoutes.map(({path, Component}) => (
-          <PrivateSuspenseRoute exact key={path} path={path} component={Component} />
+          <PrivateSuspenseRoute
+            exact
+            key={path}
+            path={path}
+            component={Component}
+            fallback={<Loading />}
+          />
         ))}
       </Switch>
     </Router>
