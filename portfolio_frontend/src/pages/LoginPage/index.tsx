@@ -10,7 +10,7 @@ function LoginPage() {
         <i className="back-icon"></i>
       </Link>
 
-      <LoginForm redirect="/" />
+      <LoginForm redirect="/admin" />
     </div>
   )
 }
