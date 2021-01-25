@@ -92,8 +92,18 @@ export async function login(username: string, password: string): Promise<boolean
             password: password,
         });
 
-        return resp.status === 200;
+        if (resp.status === 200) {
+            localStorage.setItem('isAuthenticated', 'true');
+            return true;
+        }
+        localStorage.setItem('isAuthenticated', 'false');
+        return false;
     } catch {
+        localStorage.setItem('isAuthenticated', 'false');
         return false;
     }
+}
+
+export function isAuthenticated(): boolean {
+    return localStorage.getItem('isAuthenticated') === 'true' ? true : false;
 }
