@@ -5,7 +5,7 @@ import { getGitHubContributions, GitHubContributions, GITHUB_USERNAME } from '..
 import Loading from '../Loading';
 import './chart.css';
 
-function GitHubContributionsChart() {
+const GitHubContributionsChart = () => {
   const canvasRef = createRef<HTMLCanvasElement>();
   const [contribs, setContribs] = useState<GitHubContributions>();
 
@@ -32,9 +32,7 @@ function GitHubContributionsChart() {
     );
   }
 
-  return (
-    <canvas ref={canvasRef} />
-  )
-}
+  return <canvas ref={canvasRef} />;
+};
 
 export default GitHubContributionsChart;

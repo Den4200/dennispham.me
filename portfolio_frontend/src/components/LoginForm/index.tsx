@@ -8,22 +8,22 @@ interface LoginFormProps {
   redirect: string
 }
 
-function LoginForm(params: LoginFormProps) {
+const LoginForm = (params: LoginFormProps) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [disabledForm, setDisabledForm] = useState(false);
 
   const history = useHistory();
 
-  function handleUsernameChange(event: React.FormEvent<EventTarget>) {
+  const handleUsernameChange = (event: React.FormEvent<EventTarget>) => {
     setUsername((event.target as HTMLInputElement).value);
   }
 
-  function handlePasswordChange(event: React.FormEvent<EventTarget>) {
+  const handlePasswordChange = (event: React.FormEvent<EventTarget>) => {
     setPassword((event.target as HTMLInputElement).value);
   }
 
-  async function handleSubmit(event: React.FormEvent<EventTarget>) {
+  const handleSubmit = async (event: React.FormEvent<EventTarget>) => {
     event.preventDefault();
 
     setDisabledForm(true);
@@ -32,7 +32,7 @@ function LoginForm(params: LoginFormProps) {
     } else {
       (event.target as HTMLFormElement).reset();
 
-      let secondaryHeader = document.getElementById("secondary-header")!;
+      const secondaryHeader = document.getElementById("secondary-header")!;
       secondaryHeader.innerText = "Invalid credentials.";
       secondaryHeader.style.color = "#ec4846";
       secondaryHeader.style.animation = "none";
@@ -88,7 +88,7 @@ function LoginForm(params: LoginFormProps) {
         </fieldset>
       </div>
     </form>
-  )
-}
+  );
+};
 
 export default LoginForm;

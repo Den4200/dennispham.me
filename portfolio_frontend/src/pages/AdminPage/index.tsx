@@ -4,7 +4,7 @@ import { Repository, addRepository, getRepositories, removeRepository } from '..
 import Loading from '../../components/Loading';
 import './admin.css';
 
-function AdminPage() {
+const AdminPage = () => {
   let [repositories, setRepositories] = useState<Repository[]>();
 
   useEffect(() => {
@@ -22,7 +22,7 @@ function AdminPage() {
 
   return (
     <div><h1>{repositories.length} repository available</h1></div>
-  )
-}
+  );
+};
 
 export default AdminPage;

@@ -14,7 +14,7 @@ interface RepositoriesParams {
   amount?: number
 }
 
-function Repositories(params: RepositoriesParams) {
+const Repositories = (params: RepositoriesParams) => {
   let [repositories, setRepositories] = useState<Repository[]>();
 
   useEffect(() => {
@@ -65,7 +65,7 @@ function Repositories(params: RepositoriesParams) {
         )
       })}
     </Row>
-  )
-}
+  );
+};
 
 export default Repositories;
