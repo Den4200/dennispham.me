@@ -4,3 +4,99 @@
   height: 100vh;
   width: 100vw;
 }
+
+.AdminPage-content {
+  left: 160px;
+  margin: 0 auto;
+  max-width: 1000px;
+  position: relative;
+  padding: 16px 0;
+  width: calc(90% - 320px);
+}
+
+.AdminPage h1 {
+  font-weight: 700;
+  text-align: center;
+}
+
+.AdminPage-table {
+  margin-top: 32px;
+  width: 100%;
+}
+
+.AdminPage-table td {
+  font-size: 18px;
+  padding: 10px 0;
+}
+
+.AdminPage-table td a {
+  color: white;
+  text-decoration: none;
+}
+
+.AdminPage-table tr:first-child {
+  border-top: 2px solid #26272a;
+}
+
+.AdminPage-table tr {
+  border-bottom: 2px solid #26272a;
+}
+
+.AdminPage-table-checkbox {
+  border-radius: 25%;
+  cursor: pointer;
+  display: block;
+  height: 1em;
+  margin: 0 3px 5px 0;
+  position: relative;
+  user-select: none;
+  width: 1em;
+}
+
+.AdminPage-table-checkbox input {
+  cursor: pointer;
+  height: 0;
+  position: absolute;
+  opacity: 0;
+  width: 0;
+}
+
+.AdminPage-table-checkmark {
+  background-color: white;
+  border: #26272a solid 2px;
+  border-radius: 25%;
+  height: 24px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  transition: background 0.2s linear;
+  width: 24px;
+}
+
+.AdminPage-table-checkbox:hover input ~ .AdminPage-table-checkmark {
+  background-color: lightgray;
+}
+
+.AdminPage-table-checkbox input:checked ~ .AdminPage-table-checkmark {
+  background-color: #7289DA;
+}
+
+.AdminPage-table-checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.AdminPage-table-checkbox input:checked ~ .AdminPage-table-checkmark:after {
+  display: block;
+}
+
+.AdminPage-table-checkbox .AdminPage-table-checkmark:after {
+  left: 7px;
+  top: 3px;
+  width: 6px;
+  height: 12px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
