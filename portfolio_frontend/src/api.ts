@@ -33,6 +33,30 @@ export async function getRepositories(): Promise<Repository[]> {
     return repos;
 }
 
+export async function addRepository(name: string): Promise<Repository | null> {
+    try {
+        let resp = await ApiClient.post("repository", { name: name });
+        return resp.data as Repository;
+    } catch(err) {
+        if (err.response.status === 401) {
+            window.location.href = "/auth/login";
+        }
+        return null;
+    }
+}
+
+export async function removeRepository(name: string): Promise<boolean> {
+    try {
+        await ApiClient.delete("repository", { data: { name: name } });
+        return true;
+    } catch(err) {
+        if (err.response.status === 401) {
+            window.location.href = "/auth/login";
+        }
+        return false;
+    }
+}
+
 export interface GitHubYearRange {
     start: string,
     end: string
