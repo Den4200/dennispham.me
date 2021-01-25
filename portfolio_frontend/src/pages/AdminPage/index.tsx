@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { Repository, addRepository, getRepositories, removeRepository } from '../../api';
 import Loading from '../../components/Loading';
+import Sidebar from '../../components/Sidebar';
 import './admin.css';
 
 const AdminPage = () => {
@@ -21,7 +22,9 @@ const AdminPage = () => {
   }
 
   return (
-    <div><h1>{repositories.length} repository available</h1></div>
+    <div className="AdminPage">
+      <Sidebar />
+    </div>
   );
 };
 

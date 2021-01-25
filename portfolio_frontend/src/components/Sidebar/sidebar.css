@@ -1,0 +1,80 @@
+.Sidebar {
+  background: #363940;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: fixed;
+  width: 320px;
+}
+
+.Sidebar-top {
+  flex-grow: 1;
+}
+
+.Sidebar-header {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.Sidebar-title {
+  font-size: 36px;
+  font-weight: 700;
+  margin: 10px auto 16px;
+}
+
+.Sidebar-icon-wrapper {
+  background: white;
+  clip-path: circle(50%);
+  margin: auto;
+  padding: 6px;
+  width: 120px;
+}
+
+.Sidebar-icon {
+  clip-path: circle(50%);
+  width: 108px;
+}
+
+.Sidebar-nav-section {
+  color: #D1D1D1;
+}
+
+.Sidebar-link {
+  background: #7289DA;
+  border-radius: 5px;
+  color: white;
+  display: inline-block;
+  font-weight: 900;
+  margin: 0 8px;
+  padding: 4px 20px;
+  outline: none;
+  width: calc(100% - 16px);
+}
+
+.Sidebar-link:hover {
+  color: white;
+  text-decoration: none;
+}
+
+.Sidebar-bottom {
+  display: flex;
+  margin: 32px 8px;
+  text-align: center;
+  width: calc(100% - 16px);
+}
+
+.Sidebar-button {
+  border-left: #303136 solid 1px;
+  border-right: #303136 solid 1px;
+  color: white;
+  font-weight: 900;
+  padding: 8px 32px;
+  transition: background 0.2s linear;
+  width: 100%;
+}
+
+.Sidebar-button:hover {
+  background: #3d4049;
+  color: inherit;
+  text-decoration: none;
+}
