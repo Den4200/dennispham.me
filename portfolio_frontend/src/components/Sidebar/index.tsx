@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHome } from '@fortawesome/free-solid-svg-icons';
 
 import logo from './logo.png'
 import './sidebar.css'
@@ -10,12 +12,12 @@ const Sidebar = () => (
         <div className="Sidebar-icon-wrapper">
           <img src={logo} alt="logo" className="Sidebar-icon" />
         </div>
-        <h1 className="Sidebar-title">Admin</h1>
+        <h2 className="Sidebar-title">Admin</h2>
       </div>
 
       <nav className="Sidebar-nav">
         <li className="Sidebar-nav-section">
-          <Link className="Sidebar-link" to="/admin">Home</Link>
+          <Link className="Sidebar-link" to="/admin"><FontAwesomeIcon icon={faHome} /> Home</Link>
         </li>
       </nav>
     </div>

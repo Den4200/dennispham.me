@@ -18,7 +18,7 @@
 
 .Sidebar-title {
   font-size: 36px;
-  font-weight: 700;
+  font-weight: 400;
   margin: 10px auto 16px;
 }
 
@@ -26,13 +26,13 @@
   background: white;
   clip-path: circle(50%);
   margin: auto;
-  padding: 4px;
+  padding: 3px;
   width: 116px;
 }
 
 .Sidebar-icon {
   clip-path: circle(50%);
-  width: 108px;
+  width: 110px;
 }
 
 .Sidebar-nav-section {
