@@ -7,25 +7,26 @@
 
 .navbar {
   font-weight: 900;
-  font-size: .9rem;
-  letter-spacing: .1rem;
+  font-size: 0.9rem;
+  letter-spacing: 0.1rem;
 }
 
 .bg-dark-opaque {
-  background-color: rgba(0, 0, 0, 0.6)!important;
+  background-color: rgba(0, 0, 0, 0.6) !important;
 }
 
-.navbar-brand-link, .navbar-brand-link:hover {
+.navbar-brand-link,
+.navbar-brand-link:hover {
   text-decoration: none;
   color: white;
 }
 
 .nav-link {
-  color: white!important;
-  padding-top: .4rem;
+  color: white !important;
+  padding-top: 0.4rem;
   transition: all 0.3s ease 0s;
 }
 
 .nav-link:hover {
-  color: #00ac92!important;
+  color: #00ac92 !important;
 }
