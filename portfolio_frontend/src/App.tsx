@@ -17,12 +17,14 @@ const AboutPage = React.lazy(() => import('./pages/AboutPage'));
 
 const AdminPage = React.lazy(() => import('./pages/AdminPage'));
 const LoginPage = React.lazy(() => import('./pages/LoginPage'));
+const LogoutPage = React.lazy(() => import('./pages/LogoutPage'));
 
 const routes = [
   { path: '/', Component: IndexPage },
   { path: '/projects', Component: ProjectsPage },
   { path: '/about', Component: AboutPage },
   { path: '/auth/login', Component: LoginPage },
+  { path: '/auth/logout', Component: LogoutPage },
 ]
 
 const adminRoutes = [
