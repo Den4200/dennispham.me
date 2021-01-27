@@ -25,7 +25,7 @@
   background-size: cover;
   background-position: center center;
   -webkit-transform: translateZ(0);
-          transform: translateZ(0);
+  transform: translateZ(0);
   will-change: transform;
 }
 
@@ -40,14 +40,14 @@
 
 .caption h1 {
   font-size: 3.6rem;
-  letter-spacing: .1rem;
-  text-shadow: .1rem .1rem .8rem black;
+  letter-spacing: 0.1rem;
+  text-shadow: 0.1rem 0.1rem 0.8rem black;
 }
 
 .caption h3 {
   font-size: 2rem;
-  text-shadow: .1rem .1rem .5rem black;
-  padding-bottom: .8rem;
+  text-shadow: 0.1rem 0.1rem 0.5rem black;
+  padding-bottom: 0.8rem;
 }
 
 .heading {
@@ -58,7 +58,7 @@
 
 .heading-underline {
   width: 3rem;
-  height: .2rem;
+  height: 0.2rem;
   background-color: #1ebba3;
-  margin: 0 auto .5rem;
+  margin: 0 auto 0.5rem;
 }

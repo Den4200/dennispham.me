@@ -1,13 +1,11 @@
-import Spinner from 'react-bootstrap/Spinner';
+import Spinner from "react-bootstrap/Spinner";
 
-import './loading.css';
+import "./loading.css";
 
-function Loading() {
-  return (
-    <div className="spinner-container">
-      <Spinner animation="border" variant="primary" />
-    </div>
-  )
-}
+const Loading = () => (
+  <div className="spinner-container">
+    <Spinner animation="border" variant="primary" />
+  </div>
+);
 
 export default Loading;

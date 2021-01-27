@@ -1,19 +1,15 @@
 use rocket::http::{Cookie, Cookies, SameSite, Status};
-use rocket::response::status;
 use rocket_contrib::json::Json;
 
-use crate::auth::generate_token;
+use crate::auth::{UserToken, generate_token};
 use crate::db::Conn;
-use crate::models::{
-    response::Response,
-    user::{
-        LoginDTO,
-        User,
-    },
+use crate::models::user::{
+    LoginDTO,
+    User,
 };
 
 #[post("/auth/login", format = "json", data = "<login>")]
-pub fn login(mut cookies: Cookies, login: Json<LoginDTO>, conn: Conn) -> status::Custom<Json<Response>> {
+pub fn login(login: Json<LoginDTO>, mut cookies: Cookies, conn: Conn) -> Status {
     match User::login(login.0, &conn) {
         Some(result) =>  {
             let token = generate_token(result);
@@ -26,20 +22,28 @@ pub fn login(mut cookies: Cookies, login: Json<LoginDTO>, conn: Conn) -> status:
                     .finish()
             );
 
-            status::Custom(
-                Status::Ok,
-                Json(Response {
-                    message: "login successful".to_string(),
-                    data: serde_json::to_value("").unwrap(),
-                })
-            )
+            Status::Ok
         },
-        None => status::Custom(
-            Status::BadRequest,
-            Json(Response {
-                message: "login failed".to_string(),
-                data: serde_json::to_value("").unwrap(),
-            })
-        )
+        None => Status::BadRequest
+    }
+}
+
+#[post("/auth/logout")]
+pub fn logout(
+    token: Result<UserToken, Status>,
+    mut cookies: Cookies,
+    conn: Conn
+) -> Status {
+    match token {
+        Ok(t) => {
+            cookies.remove(
+                Cookie::build("jwt", "")
+                    .path("/api")
+                    .finish()
+            );
+            User::logout(&t, &conn);
+            Status::Ok
+        }
+        Err(err) => err
     }
 }

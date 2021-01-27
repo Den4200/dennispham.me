@@ -80,6 +80,13 @@ impl User {
         }
     }
 
+    pub fn logout(user_token: &UserToken, conn: &PgConnection) -> bool {
+        diesel::update(users::table.filter(users::username.eq(user_token.user.clone())))
+            .set(users::login_session.eq::<Option<String>>(None))
+            .execute(conn)
+            .is_ok()
+    }
+
     pub fn is_valid_login_session(user_token: &UserToken, conn: &PgConnection) -> bool {
         users::table
             .filter(users::username.eq(&user_token.user))

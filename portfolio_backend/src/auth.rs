@@ -7,19 +7,11 @@ use jsonwebtoken::{DecodingKey, EncodingKey, Header, Validation};
 use lazy_static::lazy_static;
 use rocket::http::Status;
 use rocket::Outcome;
-use rocket::response::status;
 use rocket::request::{self, FromRequest, Request};
-use rocket_contrib::json::Json;
 use serde::{Deserialize, Serialize};
 
 use crate::db::Conn;
-use crate::models::{
-    response::Response,
-    user::{
-        LoginInfoDTO,
-        User,
-    },
-};
+use crate::models::user::{LoginInfoDTO, User};
 
 const WEEK: i64 = 60 * 60 * 24 * 7;
 
@@ -39,23 +31,12 @@ pub struct UserToken {
 }
 
 impl<'a, 'r> FromRequest<'a, 'r> for UserToken {
-    type Error = status::Custom<Json<Response>>;
+    type Error = Status;
 
     fn from_request(
         request: &'a Request<'r>,
-    ) -> request::Outcome<Self, status::Custom<Json<Response>>> {
+    ) -> request::Outcome<Self, Status> {
         let conn = request.guard::<Conn>().unwrap();
-
-        let failure = Outcome::Failure((
-            Status::BadRequest,
-            status::Custom(
-                Status::Unauthorized,
-                Json(Response {
-                    message: "invalid token".to_string(),
-                    data: serde_json::to_value("").unwrap(),
-                })
-            )
-        ));
 
         let cookies = request.cookies();
         match cookies.get("jwt").map(|cookie| cookie.value()) {
@@ -66,9 +47,9 @@ impl<'a, 'r> FromRequest<'a, 'r> for UserToken {
                     }
                 }
 
-                failure
+                Outcome::Failure((Status::Unauthorized, Status::Unauthorized))
             },
-            None => failure
+            None => Outcome::Failure((Status::Unauthorized, Status::Unauthorized))
         }
     }
 }
