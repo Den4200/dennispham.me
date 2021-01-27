@@ -104,6 +104,20 @@ export async function login(username: string, password: string): Promise<boolean
     }
 }
 
+export async function logout(): Promise<boolean> {
+    try {
+        let resp = await ApiClient.post("auth/logout");
+
+        if (resp.status === 200) {
+            return true;
+        }
+    } finally {
+        localStorage.removeItem('isAuthenticated');
+    }
+
+    return false;
+}
+
 export function isAuthenticated(): boolean {
     return localStorage.getItem('isAuthenticated') === 'true' ? true : false;
 }
