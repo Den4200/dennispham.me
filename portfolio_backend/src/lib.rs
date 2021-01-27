@@ -84,6 +84,7 @@ pub fn rocket() -> Rocket {
             "/api",
             routes![
                 routes::auth::login,
+                routes::auth::logout,
                 routes::repository::get_repositories,
                 routes::repository::get_repository,
                 routes::repository::post_resository,
