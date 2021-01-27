@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 
-import logo from "./logo.png";
+import logo from "./logo.jpg";
 import "./sidebar.css";
 
 const Sidebar = () => (
