@@ -13,6 +13,7 @@ const AdminPage = () => {
   const [repositories, setRepositories] = useState<Map<string, Repository>>(Map());
   const [deleteRepos, setDeleteRepos] = useState<Map<string, boolean>>(Map());
   const [addRepo, setAddRepo] = useState("");
+  const [disabledAddRepo, setDisabledAddRepo] = useState(false);
 
   useEffect(() => {
     const fetchRepositories = async () => {
@@ -59,12 +60,14 @@ const AdminPage = () => {
   const handleAddSubmit = async (event: React.FormEvent<EventTarget>) => {
     event.preventDefault();
 
+    setDisabledAddRepo(true);
     const repo = await addRepository(addRepo);
     if (repo) {
       setRepositories(repositories.set(repo.name, repo));
     }
 
     setAddRepo("");
+    setDisabledAddRepo(false);
   };
 
   return (
@@ -77,13 +80,15 @@ const AdminPage = () => {
         <form className="AdminPage-form" onSubmit={handleAddSubmit}>
           <h5>Add Repository</h5>
           <div className="AdminPage-form-content">
-            <input
-              type="text"
-              className="AdminPage-form-input"
-              placeholder="Repository here.."
-              value={addRepo}
-              onChange={handleAddRepo}
-            />
+            <fieldset disabled={disabledAddRepo}>
+              <input
+                type="text"
+                className="AdminPage-form-input"
+                placeholder="Repository here.."
+                value={addRepo}
+                onChange={handleAddRepo}
+              />
+            </fieldset>
 
             <button className="AdminPage-form-btn" aria-label="Add repository" type="submit">
               <i className="AdminPage-form-arrow" />
