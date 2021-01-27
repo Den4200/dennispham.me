@@ -122,7 +122,11 @@ const AdminPage = () => {
                   <FontAwesomeIcon icon={faCodeBranch} /> {repo.forks}
                 </td>
                 <td className="AdminPage-table-lang">
-                  <span className={`repo-language-dot ${repo.language.toLowerCase()}`} />
+                  <span
+                    className={`repo-language-dot ${
+                      repo.language ? repo.language.toLowerCase() : null
+                    }`}
+                  />
                 </td>
               </tr>
             ))}

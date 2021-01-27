@@ -50,7 +50,11 @@ const Repositories = (params: RepositoriesParams) => {
                 <div>
                   <Card.Text>{repo.description}</Card.Text>
                   <br />
-                  <span className={`repo-language-dot ${repo.language.toLowerCase()}`}></span>{" "}
+                  <span
+                    className={`repo-language-dot ${
+                      repo.language ? repo.language.toLowerCase() : null
+                    }`}
+                  ></span>{" "}
                   {repo.language}
                   <span className="ml-4">
                     <FontAwesomeIcon icon={faStar} /> {repo.stargazers}
