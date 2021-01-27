@@ -98,12 +98,10 @@ export async function login(username: string, password: string): Promise<boolean
             localStorage.setItem("isAuthenticated", "true");
             return true;
         }
-        localStorage.setItem("isAuthenticated", "false");
-        return false;
-    } catch {
-        localStorage.setItem("isAuthenticated", "false");
-        return false;
-    }
+    } catch {}
+
+    localStorage.setItem("isAuthenticated", "false");
+    return false;
 }
 
 export async function logout(): Promise<boolean> {
@@ -113,6 +111,7 @@ export async function logout(): Promise<boolean> {
         if (resp.status === 200) {
             return true;
         }
+    } catch {
     } finally {
         localStorage.removeItem("isAuthenticated");
     }
