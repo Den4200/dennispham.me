@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
-import Card from 'react-bootstrap/Card';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faGithub } from '@fortawesome/free-brands-svg-icons';
-import { faCodeBranch, faStar } from '@fortawesome/free-solid-svg-icons';
+import Card from "react-bootstrap/Card";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import { faCodeBranch, faStar } from "@fortawesome/free-solid-svg-icons";
 
-import { getRepositories, Repository } from '../../api';
-import Loading from '../Loading';
-import './repositories.css';
+import { getRepositories, Repository } from "../../api";
+import Loading from "../Loading";
+import "./repositories.css";
 
 interface RepositoriesParams {
-  amount?: number
+  amount?: number;
 }
 
 const Repositories = (params: RepositoriesParams) => {
@@ -20,14 +20,12 @@ const Repositories = (params: RepositoriesParams) => {
   useEffect(() => {
     const fetchRepositories = async () => {
       setRepositories(await getRepositories());
-    }
+    };
     fetchRepositories();
   }, []);
 
   if (!repositories) {
-    return (
-      <Loading />
-    );
+    return <Loading />;
   }
 
   if (params.amount) {
@@ -36,7 +34,7 @@ const Repositories = (params: RepositoriesParams) => {
 
   return (
     <Row>
-      {repositories.map(repo => {
+      {repositories.map((repo) => {
         return (
           <Col md={4}>
             <Card className="mb-4">
@@ -44,14 +42,16 @@ const Repositories = (params: RepositoriesParams) => {
                 <div className="repo-headline">
                   <FontAwesomeIcon icon={faGithub} />
                   &nbsp;
-                  <a href={`https://github.com/${repo.name}`}><strong>{repo.name}</strong></a>
+                  <a href={`https://github.com/${repo.name}`}>
+                    <strong>{repo.name}</strong>
+                  </a>
                 </div>
 
                 <div>
                   <Card.Text>{repo.description}</Card.Text>
                   <br />
-
-                  <span className={`repo-language-dot ${repo.language.toLowerCase()}`}></span> {repo.language}
+                  <span className={`repo-language-dot ${repo.language.toLowerCase()}`}></span>{" "}
+                  {repo.language}
                   <span className="ml-4">
                     <FontAwesomeIcon icon={faStar} /> {repo.stargazers}
                   </span>
@@ -62,7 +62,7 @@ const Repositories = (params: RepositoriesParams) => {
               </Card.Body>
             </Card>
           </Col>
-        )
+        );
       })}
     </Row>
   );

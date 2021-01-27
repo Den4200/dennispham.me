@@ -1,29 +1,31 @@
-import { useEffect, useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCodeBranch, faStar } from '@fortawesome/free-solid-svg-icons';
-import { Map } from 'immutable';
+import { useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCodeBranch, faStar } from "@fortawesome/free-solid-svg-icons";
+import { Map } from "immutable";
 
-import { Repository, addRepository, getRepositories, removeRepository } from '../../api';
-import Loading from '../../components/Loading';
-import Sidebar from '../../components/Sidebar';
-import '../../components/Repositories/repositories.css';
-import './admin.css';
+import { Repository, addRepository, getRepositories, removeRepository } from "../../api";
+import Loading from "../../components/Loading";
+import Sidebar from "../../components/Sidebar";
+import "../../components/Repositories/repositories.css";
+import "./admin.css";
 
 const AdminPage = () => {
   const [repositories, setRepositories] = useState<Map<string, Repository>>(Map());
   const [deleteRepos, setDeleteRepos] = useState<Map<string, boolean>>(Map());
-  const [addRepo, setAddRepo] = useState('');
+  const [addRepo, setAddRepo] = useState("");
 
   useEffect(() => {
     const fetchRepositories = async () => {
-      (await getRepositories()).forEach(repo => {
-        setRepositories(state => state.set(repo.name, repo));
-        setDeleteRepos(state => state.set(repo.name, false));
+      (await getRepositories()).forEach((repo) => {
+        setRepositories((state) => state.set(repo.name, repo));
+        setDeleteRepos((state) => state.set(repo.name, false));
       });
 
       // Sort by ordering
-      setRepositories(
-        state => state.sort((repoA: Repository, repoB: Repository) => (repoA.ordering > repoB.ordering) ? 1 : -1)
+      setRepositories((state) =>
+        state.sort((repoA: Repository, repoB: Repository) =>
+          repoA.ordering > repoB.ordering ? 1 : -1
+        )
       );
     };
     fetchRepositories();
@@ -44,8 +46,8 @@ const AdminPage = () => {
 
     deleteRepos.forEach((shouldDelete, repoName) => {
       if (shouldDelete && removeRepository(repoName)) {
-        setDeleteRepos(state => state.remove(repoName));
-        setRepositories(state => state.remove(repoName));
+        setDeleteRepos((state) => state.remove(repoName));
+        setRepositories((state) => state.remove(repoName));
       }
     });
   };
@@ -62,7 +64,7 @@ const AdminPage = () => {
       setRepositories(repositories.set(repo.name, repo));
     }
 
-    setAddRepo('');
+    setAddRepo("");
   };
 
   return (
@@ -75,7 +77,13 @@ const AdminPage = () => {
         <form className="AdminPage-form" onSubmit={handleAddSubmit}>
           <h5>Add Repository</h5>
           <div className="AdminPage-form-content">
-            <input type="text" className="AdminPage-form-input" placeholder="Repository here.." value={addRepo} onChange={handleAddRepo} />
+            <input
+              type="text"
+              className="AdminPage-form-input"
+              placeholder="Repository here.."
+              value={addRepo}
+              onChange={handleAddRepo}
+            />
 
             <button className="AdminPage-form-btn" aria-label="Add repository" type="submit">
               <i className="AdminPage-form-arrow" />
@@ -87,9 +95,11 @@ const AdminPage = () => {
 
         <form onSubmit={handleDeleteSubmit}>
           <h5 style={{ verticalAlign: "sub" }}>Repositories</h5>
-          <button className="AdminPage-delete" type="submit">Delete</button>
+          <button className="AdminPage-delete" type="submit">
+            Delete
+          </button>
           <table className="AdminPage-table">
-            {repositories.toList().map(repo => (
+            {repositories.toList().map((repo) => (
               <tr>
                 <td>
                   <label className="AdminPage-table-checkbox">
@@ -97,9 +107,15 @@ const AdminPage = () => {
                     <span className="AdminPage-table-checkmark" />
                   </label>
                 </td>
-                <td><a href={`https://github.com/${repo.name}`}>{repo.name}</a></td>
-                <td><FontAwesomeIcon icon={faStar} /> {repo.stargazers}</td>
-                <td><FontAwesomeIcon icon={faCodeBranch} /> {repo.forks}</td>
+                <td>
+                  <a href={`https://github.com/${repo.name}`}>{repo.name}</a>
+                </td>
+                <td>
+                  <FontAwesomeIcon icon={faStar} /> {repo.stargazers}
+                </td>
+                <td>
+                  <FontAwesomeIcon icon={faCodeBranch} /> {repo.forks}
+                </td>
                 <td className="AdminPage-table-lang">
                   <span className={`repo-language-dot ${repo.language.toLowerCase()}`} />
                 </td>

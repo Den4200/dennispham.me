@@ -1,7 +1,7 @@
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-import LoginForm from '../../components/LoginForm';
-import './login.css'
+import LoginForm from "../../components/LoginForm";
+import "./login.css";
 
 const LoginPage = () => (
   <div className="login-wrapper">

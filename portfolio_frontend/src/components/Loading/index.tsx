@@ -1,6 +1,6 @@
-import Spinner from 'react-bootstrap/Spinner';
+import Spinner from "react-bootstrap/Spinner";
 
-import './loading.css';
+import "./loading.css";
 
 const Loading = () => (
   <div className="spinner-container">

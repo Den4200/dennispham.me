@@ -1,13 +1,17 @@
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import { LinkContainer } from 'react-router-bootstrap';
-import { Link } from 'react-router-dom';
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import { LinkContainer } from "react-router-bootstrap";
+import { Link } from "react-router-dom";
 
-import './navbar.css';
+import "./navbar.css";
 
 const NavBar = () => (
   <Navbar collapseOnSelect bg="dark-opaque" variant="dark" fixed="top" expand="md">
-    <Navbar.Brand><Link className="navbar-brand-link" to="/">Dennis Pham</Link></Navbar.Brand>
+    <Navbar.Brand>
+      <Link className="navbar-brand-link" to="/">
+        Dennis Pham
+      </Link>
+    </Navbar.Brand>
 
     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
     <Navbar.Collapse id="responsive-navbar-nav">

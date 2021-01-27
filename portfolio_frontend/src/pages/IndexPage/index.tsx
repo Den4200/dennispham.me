@@ -1,42 +1,44 @@
-import { Link } from 'react-router-dom';
-import Button from 'react-bootstrap/Button';
+import { Link } from "react-router-dom";
+import Button from "react-bootstrap/Button";
 import { Link as ScrollLink } from "react-scroll";
-import Typed from 'react-typed';
+import Typed from "react-typed";
 
-import GitHubContributionsChart from '../../components/GitHubContributionsChart';
-import Repositories from '../../components/Repositories';
-import '../../heading.css';
-import './index.css';
-import landingBackground from './landing-bg.jpg';
+import GitHubContributionsChart from "../../components/GitHubContributionsChart";
+import Repositories from "../../components/Repositories";
+import "../../heading.css";
+import "./index.css";
+import landingBackground from "./landing-bg.jpg";
 
 const IndexPage = () => (
   <div>
     <div className="landing">
-        <div className="home-wrap">
-            <div className="home-inner" style={{backgroundImage: `url(${landingBackground})`}}>
-            </div>
-        </div>
+      <div className="home-wrap">
+        <div className="home-inner" style={{ backgroundImage: `url(${landingBackground})` }}></div>
+      </div>
     </div>
 
     <div className="caption text-center">
-        <h1>Dennis Pham</h1>
-        <h3>
-          I am
-          <Typed strings={[
-            '<strong id="typing"> a developer</strong>.', 
-            '<strong id="typing"> a guitarist</strong>.', 
-            '<strong id="typing"> a student</strong>.'
+      <h1>Dennis Pham</h1>
+      <h3>
+        I am
+        <Typed
+          strings={[
+            '<strong id="typing"> a developer</strong>.',
+            '<strong id="typing"> a guitarist</strong>.',
+            '<strong id="typing"> a student</strong>.',
           ]}
           typeSpeed={40}
           backSpeed={30}
           showCursor={false}
           loop={true}
-          />
-        </h3>
+        />
+      </h3>
 
-        <ScrollLink to="projects" smooth={true}>
-          <Button variant="outline-light" size="lg">My Projects</Button>
-        </ScrollLink>
+      <ScrollLink to="projects" smooth={true}>
+        <Button variant="outline-light" size="lg">
+          My Projects
+        </Button>
+      </ScrollLink>
     </div>
 
     <div id="projects" className="offset">
@@ -48,7 +50,11 @@ const IndexPage = () => (
           <Repositories amount={6} />
 
           <div className="heading-underline mt-3 mb-3"></div>
-          <h6><Link className="text-center" to="/projects">See more</Link></h6>
+          <h6>
+            <Link className="text-center" to="/projects">
+              See more
+            </Link>
+          </h6>
 
           <hr className="mb-4" />
 

@@ -1,9 +1,9 @@
-import { useEffect, createRef, useState } from "react";
+import { createRef, useEffect, useState } from "react";
 import { drawContributions } from "github-contributions-canvas";
 
-import { getGitHubContributions, GitHubContributions, GITHUB_USERNAME } from '../../api';
-import Loading from '../Loading';
-import './chart.css';
+import { getGitHubContributions, GitHubContributions, GITHUB_USERNAME } from "../../api";
+import Loading from "../Loading";
+import "./chart.css";
 
 const GitHubContributionsChart = () => {
   const canvasRef = createRef<HTMLCanvasElement>();
@@ -12,7 +12,7 @@ const GitHubContributionsChart = () => {
   useEffect(() => {
     const fetchContribs = async () => {
       setContribs(await getGitHubContributions());
-    }
+    };
     fetchContribs();
   }, []);
 
@@ -21,15 +21,13 @@ const GitHubContributionsChart = () => {
       drawContributions(canvasRef.current, {
         data: contribs,
         username: GITHUB_USERNAME,
-        themeName: "standard"
-      })
+        themeName: "standard",
+      });
     }
-  }, [contribs, canvasRef])
+  }, [contribs, canvasRef]);
 
   if (!contribs) {
-    return (
-      <Loading />
-    );
+    return <Loading />;
   }
 
   return <canvas ref={canvasRef} />;

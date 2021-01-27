@@ -1,27 +1,27 @@
-import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useState } from "react";
+import { useHistory } from "react-router-dom";
 
-import { login } from '../../api';
-import './login.css';
+import { login } from "../../api";
+import "./login.css";
 
 interface LoginFormProps {
-  redirect: string
+  redirect: string;
 }
 
 const LoginForm = (params: LoginFormProps) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [disabledForm, setDisabledForm] = useState(false);
 
   const history = useHistory();
 
   const handleUsernameChange = (event: React.FormEvent<EventTarget>) => {
     setUsername((event.target as HTMLInputElement).value);
-  }
+  };
 
   const handlePasswordChange = (event: React.FormEvent<EventTarget>) => {
     setPassword((event.target as HTMLInputElement).value);
-  }
+  };
 
   const handleSubmit = async (event: React.FormEvent<EventTarget>) => {
     event.preventDefault();
@@ -43,7 +43,7 @@ const LoginForm = (params: LoginFormProps) => {
 
       setDisabledForm(false);
     }
-  }
+  };
 
   return (
     <form className="login-form" onSubmit={handleSubmit}>
@@ -54,7 +54,9 @@ const LoginForm = (params: LoginFormProps) => {
         <fieldset disabled={disabledForm}>
           <div className="input-position">
             <div className="form-group">
-              <h5 className="input-placeholder" id="username-text">Username</h5>
+              <h5 className="input-placeholder" id="username-text">
+                Username
+              </h5>
 
               <input
                 required

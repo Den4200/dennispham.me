@@ -19,7 +19,8 @@
   text-align: center;
 }
 
-.AdminPage-content h5, .AdminPage-delete {
+.AdminPage-content h5,
+.AdminPage-delete {
   color: #919296;
   cursor: default;
   display: inline;
@@ -61,7 +62,8 @@
   border-radius: 10px;
 }
 
-.AdminPage-form-btn, .AdminPage-form-input {
+.AdminPage-form-btn,
+.AdminPage-form-input {
   border: 0;
   box-sizing: border-box;
   color: #f1f1f1;
@@ -72,7 +74,7 @@
 
 .AdminPage-form-input {
   appearance: none;
-  background: #2C2F33;
+  background: #2c2f33;
   border: 1px solid #282a2e;
   border-radius: 10px 0 0 10px;
   padding: 0 16px;
@@ -87,7 +89,7 @@
 }
 
 .AdminPage-form-btn {
-  background: #7289DA;
+  background: #7289da;
   bottom: 0;
   border-radius: 0 0.7rem 0.7rem 0;
   cursor: pointer;
@@ -163,7 +165,7 @@
 }
 
 .AdminPage-table-checkbox input:checked ~ .AdminPage-table-checkmark {
-  background-color: #7289DA;
+  background-color: #7289da;
 }
 
 .AdminPage-table-checkmark:after {

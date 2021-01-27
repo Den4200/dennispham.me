@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
-import { Redirect } from 'react-router-dom';
+import { useEffect } from "react";
+import { Redirect } from "react-router-dom";
 
-import { logout } from '../../api';
+import { logout } from "../../api";
 
 const LogoutPage = () => {
   useEffect(() => {

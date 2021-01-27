@@ -18,7 +18,7 @@
   color: white;
   font-size: 24px;
   font-weight: 600;
-  line-height: 30px; 
+  line-height: 30px;
   margin-bottom: 8px;
 }
 
@@ -32,7 +32,7 @@
   margin-top: 20px;
 }
 
-.form-group { 
+.form-group {
   text-align: left;
   width: 100%;
 }
@@ -72,16 +72,16 @@
 
 .form-style:focus,
 .form-style:active {
-  border-color: #7289DA;
+  border-color: #7289da;
 }
 
 .form-style:active .input-placeholder {
-  color: #7289DA;
+  color: #7289da;
 }
 
 .login-btn {
   align-items: center;
-  background: #7289DA;
+  background: #7289da;
   border: 0;
   border-radius: 4px;
   color: white;
