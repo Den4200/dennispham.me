@@ -59,18 +59,18 @@ export async function removeRepository(name: string): Promise<boolean> {
     }
 }
 
-export interface GitHubYearRange {
+interface GitHubYearRange {
     start: string;
     end: string;
 }
 
-export interface GitHubYear {
+interface GitHubYear {
     year: string;
     total: number;
     range: GitHubYearRange;
 }
 
-export interface GitHubContribution {
+interface GitHubContribution {
     date: string;
     count: number;
     color: string;
