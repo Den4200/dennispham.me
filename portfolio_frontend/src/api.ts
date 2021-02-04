@@ -102,7 +102,6 @@ export async function login(username: string, password: string): Promise<boolean
         }
     } catch {}
 
-    localStorage.setItem("isAuthenticated", "false");
     return false;
 }
 
