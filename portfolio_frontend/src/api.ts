@@ -41,6 +41,7 @@ export async function addRepository(name: string): Promise<Repository | null> {
         return resp.data as Repository;
     } catch (err) {
         if (err.response.status === 401) {
+            localStorage.removeItem("isAuthenticated");
             window.location.href = "/auth/login";
         }
         return null;
@@ -53,6 +54,7 @@ export async function removeRepository(name: string): Promise<boolean> {
         return true;
     } catch (err) {
         if (err.response.status === 401) {
+            localStorage.removeItem("isAuthenticated");
             window.location.href = "/auth/login";
         }
         return false;
