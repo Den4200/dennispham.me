@@ -20,7 +20,7 @@
     "@types/react-scroll": "^1.8.2",
     "axios": "^0.21.1",
     "bootstrap": "^4.5.3",
-    "github-contributions-canvas": "^0.5.0",
+    "github-contributions-canvas": "^0.6.0",
     "immutable": "^4.0.0-rc.12",
     "react": "^17.0.1",
     "react-bootstrap": "^1.4.0",
