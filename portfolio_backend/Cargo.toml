@@ -9,7 +9,7 @@ edition = "2018"
 [dependencies]
 bcrypt = "0.9.0"
 chrono = { version = "0.4", features = ["serde"] }
-diesel = { version = "1.4.5", features = ["chrono", "postgres"] }
+diesel = { version = "1.4.6", features = ["chrono", "postgres"] }
 diesel_migrations = { version = "1.4.0", features = ["postgres"] }
 dotenv = "0.15"
 futures = "0.3"
