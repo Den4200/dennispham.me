@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "../../heading.css";
 import "./about.css";
 import aboutHeaderImage from "./about-header.jpg";
@@ -90,7 +91,7 @@ const AboutPage = () => (
             before becoming an administrator. My teams placed in the top 3 in both jams.
           </li>
           <li className="text">
-            Various projects updated hourly on my <a href="{% url 'projects' %}">projects page</a>.
+            Various projects updated hourly on my <Link to="/projects">projects page</Link>.
           </li>
         </ul>
 
