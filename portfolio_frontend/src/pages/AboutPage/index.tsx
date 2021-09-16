@@ -78,7 +78,7 @@ const AboutPage = () => (
         <ul>
           <li className="text">
             Administrator of <a href="https://pythondiscord.com/">Python Discord</a>, a community
-            focused around the Python language, striving to create new developers with over 100,000
+            focused around the Python language, striving to create new developers with over 250,000
             members.
           </li>
           <li className="text">
