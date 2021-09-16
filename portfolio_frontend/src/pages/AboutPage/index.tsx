@@ -50,26 +50,8 @@ const AboutPage = () => (
         </h5>
         <ul>
           <li className="text">Git / Github</li>
-          <li className="text">Docker</li>
-        </ul>
-
-        <hr className="mt-4" />
-
-        <h3 className="heading mb-3">Learning</h3>
-
-        <h5 className="mb-2">
-          <strong>Languages</strong>
-        </h5>
-        <ul>
-          <li className="text">Java</li>
-          <li className="text">C / C++</li>
-        </ul>
-
-        <h5 className="mb-2">
-          <strong>DevOps</strong>
-        </h5>
-        <ul>
           <li className="text">Kubernetes</li>
+          <li className="text">Docker</li>
         </ul>
 
         <hr className="mt-4" />
