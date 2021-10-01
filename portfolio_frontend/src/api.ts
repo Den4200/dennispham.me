@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 
 const ApiClient = axios.create({
     baseURL: "/api",
@@ -40,7 +40,8 @@ export async function addRepository(name: string): Promise<Repository | null> {
         let resp = await ApiClient.post("repository", { name: name });
         return resp.data as Repository;
     } catch (err) {
-        if (err.response.status === 401) {
+	    const e = err as AxiosError;
+        if (e.response!.status === 401) {
             localStorage.removeItem("isAuthenticated");
             window.location.href = "/auth/login";
         }
@@ -53,7 +54,8 @@ export async function removeRepository(name: string): Promise<boolean> {
         await ApiClient.delete("repository", { data: { name: name } });
         return true;
     } catch (err) {
-        if (err.response.status === 401) {
+	    const e = err as AxiosError;
+        if (e.response!.status === 401) {
             localStorage.removeItem("isAuthenticated");
             window.location.href = "/auth/login";
         }
