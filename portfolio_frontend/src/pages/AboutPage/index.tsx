@@ -18,7 +18,7 @@ const AboutPage = () => (
       <div className="content">
         <h3 className="heading mb-3">Hey there! My name is Dennis.</h3>
         <p className="text">
-          I am a software engineer studying Computer Science, living in the United States. I enjoy
+          I am an aspiring software engineer studying Computer Science, living in the United States. I enjoy
           playing guitar, spending time with friends and family, and last but not least,
           programming. Learn more about me below!
         </p>
