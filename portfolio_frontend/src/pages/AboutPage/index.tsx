@@ -35,6 +35,7 @@ const AboutPage = () => (
           <li className="text">Rust</li>
           <li className="text">JavaScript / TypeScript</li>
           <li className="text">HTML / CSS</li>
+          <li className="text">SQL</li>
         </ul>
 
         <h5 className="mb-2">
@@ -60,7 +61,7 @@ const AboutPage = () => (
         <ul>
           <li className="text">
             Administrator of <a href="https://pythondiscord.com/">Python Discord</a>, a community
-            focused around the Python language, striving to create new developers with over 250,000
+            focused around the Python language, striving to create new developers with over 300,000
             members.
           </li>
           <li className="text">
@@ -84,7 +85,7 @@ const AboutPage = () => (
           <li className="text">
             Email: <a href="mailto:dennis@dennispham.me">dennis@dennispham.me</a>
           </li>
-          <li className="text">Discord: dennis#9999</li>
+          <li className="text">Discord: dennis#8442</li>
           <li className="text">
             GitHub: <a href="https://www.github.com/Den4200">Den4200</a>
           </li>
