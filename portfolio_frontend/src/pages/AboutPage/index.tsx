@@ -85,7 +85,7 @@ const AboutPage = () => (
           <li className="text">
             Email: <a href="mailto:dennis@dennispham.me">dennis@dennispham.me</a>
           </li>
-          <li className="text">Discord: dennis#8442</li>
+          <li className="text">Discord: dennispham.me</li>
           <li className="text">
             GitHub: <a href="https://www.github.com/Den4200">Den4200</a>
           </li>
