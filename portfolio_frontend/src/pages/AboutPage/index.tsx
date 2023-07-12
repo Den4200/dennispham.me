@@ -21,10 +21,11 @@ const AboutPage = () => (
       <div className="content">
         <h3 className="heading mb-3">Hey there! My name is Dennis.</h3>
         <p className="text">
-          I am an aspiring software engineer studying Computer Science at Purdue
-          Student, living in the United States. I enjoy playing guitar, spending
-          time with friends and family, and last but not least, programming.
-          Learn more about me below!
+          I am a computer science student at Purdue University, currently
+          working at Rolls-Royce primarily in DevSecOps but also in software
+          engineering. I enjoy playing guitar, spending time with friends and
+          family, and last but not least, programming. Learn more about me
+          below!
         </p>
 
         <hr className="mt-4" />
