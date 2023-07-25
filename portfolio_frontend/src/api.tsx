@@ -5,7 +5,7 @@ import useEvent from "react-use-event-hook";
 import type { ResponseData } from "./types";
 
 const ApiClient = axios.create({
-  baseURL: "http://localhost:8000/api",
+  baseURL: "/api",
 });
 
 export const GITHUB_USERNAME = "Den4200";
