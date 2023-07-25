@@ -18,7 +18,7 @@ const AboutPage = () => (
     </div>
 
     <div className="offset">
-      <div className="content">
+      <div className="content prose">
         <h3 className="heading mb-3">Hey there! My name is Dennis.</h3>
         <p className="text">
           I am a computer science student at Purdue University, currently
@@ -28,7 +28,7 @@ const AboutPage = () => (
           below!
         </p>
 
-        <hr className="mt-4" />
+        <hr className="my-4" />
 
         <h3 className="heading mb-3">Technologies</h3>
 
@@ -60,7 +60,7 @@ const AboutPage = () => (
           <li className="text">Docker</li>
         </ul>
 
-        <hr className="mt-4" />
+        <hr className="my-4" />
 
         <h3 className="heading mb-3">Projects</h3>
         <ul>
@@ -88,7 +88,7 @@ const AboutPage = () => (
           </li>
         </ul>
 
-        <hr className="mt-4" />
+        <hr className="my-4" />
 
         <h3 className="heading mb-3">Socials</h3>
         <ul>

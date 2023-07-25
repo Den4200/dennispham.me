@@ -1,0 +1,25 @@
+@tailwind base;
+
+@import url("https://fonts.googleapis.com/css?family=Lato:400,700&display=swap");
+
+body {
+  margin: 0;
+  font-family: "Lato", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .content-section {
+    width: 90%;
+    margin: 2rem auto;
+  }
+}

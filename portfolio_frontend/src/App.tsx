@@ -6,6 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Loading from "./components/Loading";
 import NavBar from "./components/NavBar";
 import PrivateSuspenseRoute from "./components/PrivateSuspenseRoute";
+import { GraphDataProvider } from "./hooks/contribGraph";
 
 const IndexPage = React.lazy(() => import("./pages/IndexPage"));
 const ProjectsPage = React.lazy(() => import("./pages/ProjectsPage"));
@@ -29,25 +30,27 @@ function App() {
   return (
     <Router>
       <Switch>
-        {routes.map(({ path, Component }) => (
-          <Route exact key={path} path={path}>
-            {path.startsWith("/auth") ? null : <NavBar />}
+        <GraphDataProvider>
+          {routes.map(({ path, Component }) => (
+            <Route exact key={path} path={path}>
+              {path.startsWith("/auth") ? null : <NavBar />}
 
-            <Suspense fallback={<Loading />}>
-              <Component />
-            </Suspense>
-          </Route>
-        ))}
+              <Suspense fallback={<Loading />}>
+                <Component />
+              </Suspense>
+            </Route>
+          ))}
 
-        {adminRoutes.map(({ path, Component }) => (
-          <PrivateSuspenseRoute
-            exact
-            key={path}
-            path={path}
-            component={Component}
-            fallback={<Loading />}
-          />
-        ))}
+          {adminRoutes.map(({ path, Component }) => (
+            <PrivateSuspenseRoute
+              exact
+              key={path}
+              path={path}
+              component={Component}
+              fallback={<Loading />}
+            />
+          ))}
+        </GraphDataProvider>
       </Switch>
     </Router>
   );
