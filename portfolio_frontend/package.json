@@ -19,7 +19,7 @@
     "@types/react-router-dom": "^5.1.7",
     "@types/react-scroll": "^1.8.2",
     "axios": "^0.21.2",
-    "bootstrap": "^4.5.3",
+    "bootstrap": "^5.0.0",
     "github-contributions-canvas": "^0.6.0",
     "immutable": "^4.0.0-rc.12",
     "react": "^17.0.1",
