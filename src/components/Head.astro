@@ -53,8 +53,6 @@ const {
     }
   };
 
-  document.addEventListener("astro:page-load", setTheme);
-  document.addEventListener("astro:after-swap", setTheme);
-
   setTheme();
+  document.addEventListener("astro:after-swap", setTheme);
 </script>
