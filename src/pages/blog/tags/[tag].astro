@@ -1,0 +1,37 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import PageHeader from "@/components/PageHeader.astro";
+import PostCard from "@/components/PostCard.astro";
+import { getPublishedPosts } from "@/lib/posts";
+
+export async function getStaticPaths() {
+  const posts = await getPublishedPosts();
+  const tags = [...new Set(posts.flatMap((p) => p.data.tags ?? []))];
+  return tags.map((tag) => ({
+    params: { tag },
+    props: { tag },
+  }));
+}
+
+const { tag } = Astro.props;
+
+const title = "Blog";
+const description = `All posts tagged with "${tag}".`;
+
+const allPosts = await getPublishedPosts();
+const posts = allPosts.filter((p) => p.data.tags?.includes(tag));
+---
+
+<Layout title={title} description={description}>
+  <main class="mx-auto max-w-7xl px-4 py-16 lg:px-6 lg:py-24">
+    <div class="mx-auto max-w-3xl">
+      <PageHeader title={title} description={description} />
+    </div>
+
+    <div
+      class="mx-auto mt-10 max-w-3xl divide-y divide-gray-200 dark:divide-neutral-700"
+    >
+      {posts.map((post) => <PostCard post={post} activeTag={tag} />)}
+    </div>
+  </main>
+</Layout>

@@ -1,0 +1,17 @@
+allowBuilds:
+  esbuild: true
+  sharp: true
+minimumReleaseAge: 10080 # 1w
+minimumReleaseAgeExclude:
+  # Temporary exclusion list, as this is a new project
+  - "@astrojs/internal-helpers@0.10.0"
+  - "@astrojs/node@10.1.3"
+  - "@eslint/plugin-kit@0.7.2"
+  - "@typescript-eslint/parser@8.60.1"
+  - "@typescript-eslint/project-service@8.60.1"
+  - "@typescript-eslint/scope-manager@8.60.1"
+  - "@typescript-eslint/tsconfig-utils@8.60.1"
+  - "@typescript-eslint/types@8.60.1"
+  - "@typescript-eslint/typescript-estree@8.60.1"
+  - "@typescript-eslint/visitor-keys@8.60.1"
+  - eslint@10.4.1

@@ -1,0 +1,46 @@
+---
+export interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Home",
+  description = "A personal blog about software development, platform engineering, technology, and life.",
+} = Astro.props;
+---
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<title>{title} • Dennis Pham</title>
+<link rel="icon" href="/favicon.ico" />
+<link rel="sitemap" href="/sitemap-index.xml" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  title="Dennis Pham"
+  href={new URL("rss.xml", Astro.site)}
+/>
+<meta name="description" content={description} />
+<meta name="generator" content={Astro.generator} />
+
+<!-- Open Graph tags -->
+<meta property="og:title" content={`${title} • Dennis Pham`} />
+<meta property="og:type" content="website" />
+<meta property="og:url" content={Astro.site} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={new URL("dennis.jpg", Astro.site)} />
+<meta property="og:image:alt" content="Dennis Pham" />
+
+<script is:inline>
+  // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+  if (
+    localStorage.getItem("color-theme") === "dark" ||
+    (!("color-theme" in localStorage) &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches)
+  ) {
+    document.documentElement.classList.add("dark");
+  } else {
+    document.documentElement.classList.remove("dark");
+  }
+</script>

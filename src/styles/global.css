@@ -1,0 +1,31 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@import "flowbite/src/themes/default";
+@plugin "flowbite/plugin";
+@source "../../node_modules/flowbite";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@utility link {
+  @apply font-medium text-gray-900 underline decoration-gray-400 hover:decoration-amber-600 dark:text-white dark:decoration-neutral-500;
+}
+
+@utility icon-link {
+  @apply text-gray-500 hover:text-gray-900 dark:text-neutral-400 dark:hover:text-white;
+}
+
+.prose :is(h1, h2, h3, h4, h5, h6) > a,
+.prose :is(h1, h2, h3, h4, h5, h6) > a:hover {
+  color: inherit;
+  font-weight: inherit;
+  text-decoration: none;
+}
+
+.prose :is(h1, h2, h3, h4, h5, h6) > a:hover::after {
+  content: " #";
+  @apply text-amber-600;
+}
+
+.prose pre {
+  position: relative;
+}

@@ -1,0 +1,76 @@
+[auto_update]
+cooldown_days = 7
+
+[[repos]]
+repo = "meta"
+hooks = [{ id = "identity" }, { id = "check-useless-excludes" }]
+
+[[repos]]
+repo = "builtin"
+hooks = [
+  { id = "trailing-whitespace" },
+  { id = "check-added-large-files", args = [
+    "--maxkb=1000",
+  ] },
+  { id = "check-case-conflict" },
+  { id = "check-illegal-windows-names" },
+  { id = "end-of-file-fixer" },
+  { id = "fix-byte-order-marker" },
+  { id = "check-json" },
+  { id = "check-json5" },
+  { id = "check-toml" },
+  { id = "check-vcs-permalinks" },
+  { id = "check-yaml", args = [
+    "--allow-multiple-documents",
+  ] },
+  { id = "check-xml" },
+  { id = "mixed-line-ending", args = [
+    "--fix=lf",
+  ] },
+  { id = "check-symlinks" },
+  { id = "destroyed-symlinks" },
+  { id = "check-merge-conflict" },
+  { id = "detect-private-key" },
+  { id = "no-commit-to-branch" },
+  { id = "check-shebang-scripts-are-executable" },
+  { id = "check-executables-have-shebangs" },
+]
+
+[[repos]]
+repo = "https://github.com/gitleaks/gitleaks"
+rev = "83d9cd684c87d95d656c1458ef04895a7f1cbd8e" # v8.30.1
+hooks = [{ id = "gitleaks" }]
+
+[[repos]]
+repo = "https://github.com/pre-commit/mirrors-eslint"
+rev = "61e8b06e669ce52c94348373faab214beaa8cd4c" # v10.4.1
+hooks = [
+  { id = "eslint", additional_dependencies = [
+    "eslint@10.4.1",
+    "@typescript-eslint/parser@8.60.1",
+    "eslint-plugin-astro@1.7.0",
+    "eslint-config-prettier@10.1.8",
+  ], files = { glob = [
+    "**/*.astro",
+    "**/*.js",
+    "**/*.mjs",
+    "**/*.ts",
+  ] } },
+]
+
+[[repos]]
+repo = "https://github.com/JoC0de/pre-commit-prettier"
+rev = "7ffc7362fefc5a14935c84e35d76dcf62b519291" # v3.8.3
+hooks = [
+  { id = "prettier", additional_dependencies = [
+    "prettier@3.8.3",
+    "prettier-plugin-astro@0.14.1",
+    "prettier-plugin-tailwindcss@0.8.0",
+  ] },
+]
+
+[[repos]]
+repo = "local"
+hooks = [
+  { id = "astro-check", name = "astro check", language = "system", entry = "pnpm run astro check --minimumFailingSeverity=hint", pass_filenames = false },
+]

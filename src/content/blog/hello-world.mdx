@@ -1,0 +1,66 @@
+---
+title: Hello, world!
+description: Welcome to my blog! This is the story of three websites in six years.
+date: 2026-06-09
+tags: [meta]
+---
+
+import { Image } from "astro:assets";
+import GuitarPlayer from "@/components/GuitarPlayer.astro";
+import { tracks } from "@/lib/guitar";
+import { getAlbum, getPhotoDimensions } from "@/lib/immich";
+
+export const album = await getAlbum();
+export const asset = album.assets.find(
+  (asset) => asset.id === "d02a3222-1f49-4098-bd77-6290af7427ef",
+);
+export const { width, height } = getPhotoDimensions(asset);
+
+Hey, I'm Dennis! I'm a Platform Engineering Lead, homelab enthusiast, guitarist, and photographer based in Philadelphia. Welcome to my corner of the internet.
+
+This is the third iteration of my personal website, and I figured the occasion deserved a proper first post.
+
+## Three websites in six years
+
+Over the past six years, I've built three different versions of this very website, each with a different tech stack and design.
+
+The first version of this site was built with **Django** back in mid 2020. It was one of my first real web projects: a monolithic Python app that served HTML templates with a bit of CSS, plus blog content from a database. It absolutely did the job, but I quickly learned of more exciting frameworks and languages soon after.
+
+Half a year later in late 2020, I completely rewrote the website, splitting things up into a **React** frontend and a **Rust** backend powered by Rocket and Diesel. Back then, there was all the hype around Rust (and React too) and I found myself following that train. To this day, Rust is still one of my favorite languages and I hope to get opportunities to use it more! But anyway, over time, maintaining a full backend for what was essentially a static site with a few dynamic features started to feel like overkill. And besides, there was a new exciting framework I wanted to try!
+
+That brings us to the current version, built with **Astro**! Astro's novel Islands Architecture and ergonomic developer experience make it a joy to work with. The whole thing is simpler to maintain and faster to iterate on, which is exactly what I wanted.
+
+Each rewrite was a great way to learn new technologies and improve the design and content of my personal website. I'm happy with how it turned out, and I hope you enjoy it too!
+
+## What to expect
+
+I plan to write about platform engineering, software development, side projects, and whatever else I find interesting. I'll also be adding more of my photography and guitar recordings over time, so check out the [photos](/photos/) and [guitar](/guitar/) pages if you're interested!
+
+Here's a sample guitar recording.
+
+<div class="not-prose mx-auto max-w-xl">
+  <GuitarPlayer
+    tracks={tracks.filter((track) => track.title == "Photograph")}
+    hideTracklist
+  />
+</div>
+
+Here's a sample photo too!
+
+<div class="not-prose mx-auto max-w-sm">
+  <a href="/photos/">
+    {album.assets.length > 0 && (
+      <Image
+        src={`/api/photos/${asset.id}/`}
+        alt={asset.originalFileName}
+        height={height}
+        width={height}
+        class="rounded-lg"
+      />
+    )}
+  </a>
+</div>
+
+---
+
+Thanks for stopping by! [Read more about me](/about/) and feel free to connect with me on my socials or subscribe to my RSS feed!

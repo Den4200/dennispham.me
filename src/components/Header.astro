@@ -1,0 +1,190 @@
+---
+import { Image } from "astro:assets";
+import dennis from "@/assets/dennis.jpg";
+
+const navLinks = [
+  { href: "/", label: "Home" },
+  { href: "/blog/", label: "Blog" },
+  { href: "/projects/", label: "Projects" },
+  { href: "/guitar/", label: "Guitar" },
+  { href: "/photos/", label: "Photos" },
+  { href: "/about/", label: "About" },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header>
+  <nav
+    class="border-b border-gray-200 bg-white px-4 py-2.5 lg:px-6 dark:border-neutral-800 dark:bg-neutral-900"
+  >
+    <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between">
+      <!-- Branding -->
+      <a href="/" class="flex items-center gap-3">
+        <Image
+          src={dennis}
+          alt="Dennis Pham"
+          width={36}
+          height={36}
+          class="rounded-full bg-gray-200 text-transparent dark:bg-neutral-700"
+        />
+        <span class="text-xl font-semibold whitespace-nowrap dark:text-white">
+          Dennis Pham
+        </span>
+      </a>
+
+      <!-- Right side: search + theme toggle + mobile menu button -->
+      <div class="flex items-center gap-1 lg:order-2">
+        <!-- Search toggle -->
+        <button
+          id="search-trigger"
+          type="button"
+          class="cursor-pointer rounded-lg p-2.5 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none dark:text-neutral-400 dark:hover:bg-neutral-700"
+          aria-label="Search (Ctrl+K)"
+        >
+          <svg
+            class="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+          </svg>
+        </button>
+
+        <!-- Theme toggle -->
+        <button
+          id="theme-toggle"
+          type="button"
+          class="cursor-pointer rounded-lg p-2.5 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none dark:text-neutral-400 dark:hover:bg-neutral-700"
+          aria-label="Toggle dark mode"
+        >
+          <svg
+            id="theme-toggle-dark-icon"
+            class="hidden h-5 w-5 text-indigo-400"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+            ></path>
+          </svg>
+          <svg
+            id="theme-toggle-light-icon"
+            class="hidden h-5 w-5 text-amber-500"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+              fill-rule="evenodd"
+              clip-rule="evenodd"></path>
+          </svg>
+        </button>
+
+        <!-- Mobile menu toggle -->
+        <button
+          data-collapse-toggle="mobile-menu"
+          type="button"
+          class="inline-flex items-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:ring-2 focus:ring-gray-200 focus:outline-none lg:hidden dark:text-neutral-400 dark:hover:bg-neutral-700 dark:focus:ring-neutral-600"
+          aria-controls="mobile-menu"
+          aria-expanded="false"
+          aria-label="Open main menu"
+        >
+          <svg
+            class="h-6 w-6"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+              clip-rule="evenodd"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Navigation links -->
+      <div
+        class="hidden w-full items-center justify-between lg:order-1 lg:flex lg:w-auto"
+        id="mobile-menu"
+      >
+        <ul
+          class="mt-4 flex flex-col font-medium lg:mt-0 lg:flex-row lg:space-x-8"
+        >
+          {
+            navLinks.map(({ href, label }) => {
+              const isActive =
+                currentPath === href ||
+                (href !== "/" && currentPath.startsWith(href));
+              return (
+                <li>
+                  <a
+                    href={href}
+                    class:list={[
+                      "block rounded-sm py-2 pr-4 pl-3 lg:p-0",
+                      isActive
+                        ? "font-semibold text-gray-900 lg:underline lg:decoration-amber-600 lg:decoration-2 lg:underline-offset-[6px] dark:text-white"
+                        : "text-gray-600 hover:bg-gray-50 hover:text-gray-900 lg:hover:bg-transparent dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-white lg:dark:hover:bg-transparent",
+                    ]}
+                    aria-current={isActive ? "page" : undefined}
+                  >
+                    {label}
+                  </a>
+                </li>
+              );
+            })
+          }
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<script is:inline>
+  // Theme toggle icon state
+  var themeToggleDarkIcon = document.getElementById("theme-toggle-dark-icon");
+  var themeToggleLightIcon = document.getElementById("theme-toggle-light-icon");
+
+  if (
+    localStorage.getItem("color-theme") === "dark" ||
+    (!("color-theme" in localStorage) &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches)
+  ) {
+    themeToggleDarkIcon.classList.remove("hidden");
+  } else {
+    themeToggleLightIcon.classList.remove("hidden");
+  }
+
+  var themeToggleBtn = document.getElementById("theme-toggle");
+
+  themeToggleBtn.addEventListener("click", function () {
+    themeToggleDarkIcon.classList.toggle("hidden");
+    themeToggleLightIcon.classList.toggle("hidden");
+
+    if (localStorage.getItem("color-theme")) {
+      if (localStorage.getItem("color-theme") === "light") {
+        document.documentElement.classList.add("dark");
+        localStorage.setItem("color-theme", "dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+        localStorage.setItem("color-theme", "light");
+      }
+    } else {
+      if (document.documentElement.classList.contains("dark")) {
+        document.documentElement.classList.remove("dark");
+        localStorage.setItem("color-theme", "light");
+      } else {
+        document.documentElement.classList.add("dark");
+        localStorage.setItem("color-theme", "dark");
+      }
+    }
+  });
+</script>

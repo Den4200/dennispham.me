@@ -1,0 +1,61 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import PageHeader from "@/components/PageHeader.astro";
+import PostCard from "@/components/PostCard.astro";
+import { getPublishedPosts } from "@/lib/posts";
+import type { GetStaticPathsOptions } from "astro";
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+  const posts = await getPublishedPosts();
+  return paginate(posts, { pageSize: 10 });
+}
+
+const title = "Blog";
+const description = "Thoughts on engineering, homelab, and other things.";
+
+const { page } = Astro.props;
+---
+
+<Layout title={title} description={description}>
+  <main class="mx-auto max-w-7xl px-4 py-16 lg:px-6 lg:py-24">
+    <div class="mx-auto max-w-3xl">
+      <PageHeader title={title} description={description} />
+    </div>
+
+    <div
+      class="mx-auto mt-10 max-w-3xl divide-y divide-gray-200 dark:divide-neutral-700"
+    >
+      {page.data.map((post) => <PostCard post={post} />)}
+    </div>
+
+    {
+      (page.url.prev || page.url.next) && (
+        <nav class="mx-auto mt-10 grid max-w-3xl grid-cols-3 items-center">
+          <div>
+            {page.url.prev && (
+              <a
+                href={page.url.prev}
+                class="rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:border-amber-600 hover:text-amber-600 dark:border-neutral-600 dark:text-neutral-300"
+              >
+                &larr; Newer
+              </a>
+            )}
+          </div>
+          <span class="text-center text-sm text-gray-500 dark:text-neutral-500">
+            Page {page.currentPage} of {page.lastPage}
+          </span>
+          <div class="text-right">
+            {page.url.next && (
+              <a
+                href={page.url.next}
+                class="rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:border-amber-600 hover:text-amber-600 dark:border-neutral-600 dark:text-neutral-300"
+              >
+                Older &rarr;
+              </a>
+            )}
+          </div>
+        </nav>
+      )
+    }
+  </main>
+</Layout>

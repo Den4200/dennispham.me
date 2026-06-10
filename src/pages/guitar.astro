@@ -1,0 +1,46 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import PageHeader from "@/components/PageHeader.astro";
+import GuitarPlayer from "@/components/GuitarPlayer.astro";
+import { tracks } from "@/lib/guitar";
+
+const title = "Guitar";
+const description =
+  "My acoustic fingerstyle guitar covers with electric coming soon!";
+---
+
+<Layout title={title} description={description}>
+  <main class="mx-auto max-w-3xl px-4 py-16 lg:px-6 lg:py-24">
+    <PageHeader title={title} description={description} />
+
+    <!-- Guitars -->
+    <div class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2">
+      <div>
+        <h3
+          class="mb-2 text-sm font-semibold tracking-wider text-gray-900 uppercase dark:text-white"
+        >
+          Acoustic
+        </h3>
+        <ul class="space-y-1 text-sm text-gray-500 dark:text-neutral-400">
+          <li>Yamaha AC3R</li>
+          <li>Breedlove Pursuit Concert</li>
+        </ul>
+      </div>
+      <div>
+        <h3
+          class="mb-2 text-sm font-semibold tracking-wider text-gray-900 uppercase dark:text-white"
+        >
+          Electric
+        </h3>
+        <ul class="space-y-1 text-sm text-gray-500 dark:text-neutral-400">
+          <li>Epiphone Les Paul</li>
+          <li>Custom-built Walnut Telecaster</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-10">
+      <GuitarPlayer tracks={tracks} />
+    </div>
+  </main>
+</Layout>
