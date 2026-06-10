@@ -9,6 +9,7 @@ on:
 
 jobs:
   build:
+    name: Build & Push
     runs-on: ubuntu-latest
     permissions:
       artifact-metadata: write
@@ -17,6 +18,5 @@ jobs:
       id-token: write
       packages: write
     steps:
-      - uses: den4200/shared-workflows/actions/build-container-image@c98afb38abede2da1bdc8fa8aaedc9310c35069e
-        with:
-          image: ${{ github.actor }}/dennispham-me
+      - name: Build & Push
+        uses: den4200/shared-workflows/actions/build-container-image@527dd471809f1c741a5472b0468fee786ab6f616
