@@ -1,0 +1,50 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import PageHeader from "@/components/PageHeader.astro";
+import PhotoCard from "@/components/PhotoCard.astro";
+import { getAlbum } from "@/lib/immich";
+
+const title = "Photos";
+const description = "A selection of my photography over the years.";
+
+const album = await getAlbum();
+---
+
+<Layout title={title} description={description}>
+  <main class="mx-auto max-w-7xl px-4 py-16 lg:px-6 lg:py-24">
+    <PageHeader title={title} description={description} />
+
+    <!-- Gear -->
+    <div class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2">
+      <div>
+        <h3
+          class="mb-2 text-sm font-semibold tracking-wider text-gray-900 uppercase dark:text-white"
+        >
+          Current Gear
+        </h3>
+        <ul class="space-y-1 text-sm text-gray-500 dark:text-neutral-400">
+          <li>Sony A7C II</li>
+          <li>Sigma 24-70mm f/2.8 DG DN II Art</li>
+          <li>Sony Sonnar T* FE 35mm f/2.8 ZA</li>
+        </ul>
+      </div>
+      <div>
+        <h3
+          class="mb-2 text-sm font-semibold tracking-wider text-gray-900 uppercase dark:text-white"
+        >
+          Previous Gear
+        </h3>
+        <ul class="space-y-1 text-sm text-gray-500 dark:text-neutral-400">
+          <li>Sony A6400</li>
+          <li>Sigma 16mm f/1.4 DC DN</li>
+          <li>Sony E 35mm f/1.8 OSS</li>
+          <li>Sony E 50mm f/1.8 OSS</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-10 columns-1 gap-2 sm:columns-2 lg:columns-3">
+      {album.assets.map((asset) => <PhotoCard asset={asset} />)}
+    </div>
+  </main>
+</Layout>

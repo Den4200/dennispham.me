@@ -1,0 +1,552 @@
+---
+import type { Track } from "@/lib/guitar";
+
+interface Props {
+  tracks: Track[];
+  horizontal?: boolean;
+  hideTracklist?: boolean;
+}
+
+const { tracks, horizontal = false, hideTracklist = false } = Astro.props;
+---
+
+{
+  tracks.length > 0 ? (
+    <div class:list={[horizontal && "lg:grid lg:grid-cols-2 lg:gap-8"]}>
+      {/* Now Playing */}
+      <div class="rounded-lg border border-gray-200 p-6 dark:border-neutral-700">
+        <p class="text-xs font-semibold tracking-wide text-gray-500 uppercase dark:text-neutral-500">
+          Now playing
+        </p>
+        <h2
+          id="now-playing-title"
+          class="mt-2 text-xl font-bold text-gray-900 dark:text-white"
+        />
+        <p
+          id="now-playing-artist"
+          class="mt-1 text-sm text-gray-500 dark:text-neutral-400"
+        />
+
+        {/* Hidden audio element */}
+        <audio id="audio-player" />
+
+        {/* Progress bar */}
+        <div class="mt-5">
+          <div
+            id="progress-bar"
+            class="group relative h-1.5 cursor-pointer rounded-full bg-gray-200 dark:bg-neutral-700"
+          >
+            <div
+              id="progress-fill"
+              class="pointer-events-none h-full rounded-full bg-amber-600"
+              style="width: 0%"
+            />
+            <div
+              id="progress-thumb"
+              class="pointer-events-none absolute top-1/2 h-3.5 w-3.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-amber-600 opacity-0 shadow transition-opacity group-hover:opacity-100"
+              style="left: 0%"
+            />
+          </div>
+          <div class="mt-1.5 flex justify-between text-xs text-gray-500 dark:text-neutral-400">
+            <span id="time-current">0:00</span>
+            <span id="time-duration">0:00</span>
+          </div>
+        </div>
+
+        {/* Controls */}
+        <div class="mt-3 flex items-center justify-center sm:justify-between">
+          <div class="hidden w-24 sm:block" />
+          <div class="flex items-center gap-3">
+            <button
+              id="prev-track"
+              type="button"
+              class:list={[
+                "cursor-pointer rounded-full p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-white",
+                tracks.length <= 1 && "invisible",
+              ]}
+              aria-label="Previous track"
+            >
+              <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M6 6h2v12H6zm3.5 6 8.5 6V6z" />
+              </svg>
+            </button>
+            <button
+              id="play-pause"
+              type="button"
+              class="cursor-pointer rounded-full p-3 text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-neutral-300 dark:hover:bg-neutral-800 dark:hover:text-white"
+              aria-label="Play"
+            >
+              <svg
+                id="icon-play"
+                class="h-6 w-6"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path d="M8 5v14l11-7z" />
+              </svg>
+              <svg
+                id="icon-pause"
+                class="hidden h-6 w-6"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+              </svg>
+            </button>
+            <button
+              id="next-track"
+              type="button"
+              class:list={[
+                "cursor-pointer rounded-full p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-white",
+                tracks.length <= 1 && "invisible",
+              ]}
+              aria-label="Next track"
+            >
+              <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z" />
+              </svg>
+            </button>
+          </div>
+          <div class="hidden w-24 items-center justify-end gap-1.5 sm:flex">
+            <svg
+              class="h-3.5 w-3.5 shrink-0 text-gray-400 dark:text-neutral-500"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z" />
+            </svg>
+            <input
+              id="volume-slider"
+              type="range"
+              min="0"
+              max="1"
+              step="0.01"
+              value="1"
+              class="volume-range h-1.5 w-16 cursor-pointer appearance-none rounded-full bg-gray-200 dark:bg-neutral-700"
+              aria-label="Volume"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Tracklist */}
+      <div
+        class:list={[
+          horizontal
+            ? "mt-8 max-h-58 overflow-y-auto lg:relative lg:mt-0 lg:max-h-none lg:overflow-visible"
+            : "mt-8",
+          hideTracklist && "hidden",
+        ]}
+      >
+        <div
+          class:list={[
+            "divide-y divide-gray-200 dark:divide-neutral-700",
+            horizontal && "lg:absolute lg:inset-0 lg:overflow-y-auto",
+          ]}
+        >
+          {tracks.map((track, index) => (
+            <button
+              type="button"
+              class:list={[
+                "track-item flex w-full cursor-pointer items-center gap-4 px-3 py-4 text-left transition-colors hover:bg-gray-50 dark:hover:bg-neutral-800",
+              ]}
+              data-index={index}
+              data-url={track.url}
+              data-title={track.title}
+              data-artist={track.artist}
+            >
+              <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gray-100 text-sm font-medium text-gray-500 dark:bg-neutral-800 dark:text-neutral-400">
+                {index + 1}
+              </span>
+              <div class="min-w-0 flex-1">
+                <p class="track-title truncate font-medium text-gray-900 dark:text-white">
+                  {track.title}
+                </p>
+                <p class="text-sm text-gray-500 dark:text-neutral-400">
+                  {track.artist}
+                </p>
+              </div>
+              <span
+                class="track-duration shrink-0 text-sm text-gray-400 dark:text-neutral-500"
+                data-index={index}
+              />
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  ) : (
+    <p class="text-gray-500 dark:text-neutral-400">
+      No tracks yet. Check back soon.
+    </p>
+  )
+}
+
+<style>
+  @reference "tailwindcss";
+  @custom-variant dark (&:where(.dark, .dark *));
+
+  .track-item.is-active {
+    @apply bg-gray-50 dark:bg-neutral-800;
+  }
+
+  .track-item.is-active .track-title {
+    @apply text-amber-600;
+  }
+
+  .track-item.is-active span:first-child {
+    @apply bg-amber-600 text-white;
+  }
+
+  .volume-range::-webkit-slider-thumb {
+    @apply h-3 w-3 appearance-none rounded-full bg-gray-500 dark:bg-neutral-400;
+  }
+
+  .volume-range::-moz-range-thumb {
+    @apply h-3 w-3 appearance-none rounded-full border-none bg-gray-500 dark:bg-neutral-400;
+  }
+
+  .volume-range::-moz-range-progress {
+    @apply h-1.5 rounded-full bg-amber-600;
+  }
+</style>
+
+<script>
+  let cleanup: (() => void) | null = null;
+
+  function initAudioPlayer() {
+    // Clean up previous listeners from prior page
+    if (cleanup) cleanup();
+
+    const player = document.getElementById(
+      "audio-player",
+    ) as HTMLAudioElement | null;
+    const titleEl = document.getElementById("now-playing-title");
+    const artistEl = document.getElementById("now-playing-artist");
+    const trackItems =
+      document.querySelectorAll<HTMLButtonElement>(".track-item");
+    const progressBar = document.getElementById("progress-bar");
+    const progressFill = document.getElementById("progress-fill");
+    const progressThumb = document.getElementById("progress-thumb");
+    const timeCurrent = document.getElementById("time-current");
+    const timeDuration = document.getElementById("time-duration");
+    const playPauseBtn = document.getElementById("play-pause");
+    const iconPlay = document.getElementById("icon-play");
+    const iconPause = document.getElementById("icon-pause");
+    const volumeSlider = document.getElementById(
+      "volume-slider",
+    ) as HTMLInputElement | null;
+
+    if (
+      !player ||
+      !titleEl ||
+      !artistEl ||
+      !progressBar ||
+      !progressFill ||
+      !progressThumb ||
+      !timeCurrent ||
+      !timeDuration ||
+      !playPauseBtn ||
+      !iconPlay ||
+      !iconPause ||
+      !volumeSlider ||
+      trackItems.length === 0
+    ) {
+      cleanup = null;
+      return;
+    }
+
+    const STORAGE_KEY = "guitar-player-state";
+
+    function formatTime(seconds: number): string {
+      if (!isFinite(seconds)) return "0:00";
+      const m = Math.floor(seconds / 60);
+      const s = Math.floor(seconds % 60);
+      return `${m}:${s.toString().padStart(2, "0")}`;
+    }
+
+    function updatePlayPauseIcon() {
+      if (player!.paused) {
+        iconPlay!.classList.remove("hidden");
+        iconPause!.classList.add("hidden");
+        playPauseBtn!.setAttribute("aria-label", "Play");
+      } else {
+        iconPlay!.classList.add("hidden");
+        iconPause!.classList.remove("hidden");
+        playPauseBtn!.setAttribute("aria-label", "Pause");
+      }
+    }
+
+    function updateProgress() {
+      const duration = player!.duration;
+      const current = player!.currentTime;
+      if (!isFinite(duration) || duration === 0) return;
+      const pct = (current / duration) * 100;
+      progressFill!.style.width = `${pct}%`;
+      progressThumb!.style.left = `${pct}%`;
+      timeCurrent!.textContent = formatTime(current);
+    }
+
+    function saveState(url: string) {
+      localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify({ url, time: player!.currentTime }),
+      );
+    }
+
+    function setActive(index: number, autoplay = true) {
+      const item = trackItems[index];
+      if (!item) return;
+
+      player!.src = item.dataset.url!;
+      if (autoplay) player!.play();
+
+      titleEl!.textContent = item.dataset.title!;
+      artistEl!.textContent = item.dataset.artist!;
+
+      trackItems.forEach((el) => el.classList.remove("is-active"));
+      item.classList.add("is-active");
+
+      // Reset progress display
+      progressFill!.style.width = "0%";
+      progressThumb!.style.left = "0%";
+      timeCurrent!.textContent = "0:00";
+      timeDuration!.textContent = "0:00";
+
+      saveState(item.dataset.url!);
+    }
+
+    // Update progress bar and time
+    player.addEventListener("timeupdate", () => {
+      updateProgress();
+      const current = document.querySelector<HTMLButtonElement>(
+        ".track-item.is-active",
+      );
+      if (!current) return;
+      saveState(current.dataset.url!);
+    });
+
+    player.addEventListener("loadedmetadata", () => {
+      timeDuration!.textContent = formatTime(player.duration);
+    });
+
+    // Play/Pause sync
+    player.addEventListener("play", updatePlayPauseIcon);
+    player.addEventListener("pause", updatePlayPauseIcon);
+
+    playPauseBtn.addEventListener("click", () => {
+      player.paused ? player.play() : player.pause();
+    });
+
+    const savedVolume = localStorage.getItem("guitar-player-volume");
+    if (savedVolume !== null) {
+      player.volume = parseFloat(savedVolume);
+      volumeSlider.value = savedVolume;
+    }
+
+    volumeSlider.addEventListener("input", () => {
+      player.volume = parseFloat(volumeSlider.value);
+      localStorage.setItem("guitar-player-volume", volumeSlider.value);
+    });
+
+    // Progress bar seeking
+    function seekFromEvent(e: MouseEvent) {
+      const rect = progressBar!.getBoundingClientRect();
+      const pct = Math.max(
+        0,
+        Math.min(1, (e.clientX - rect.left) / rect.width),
+      );
+      player!.currentTime = pct * player!.duration;
+      updateProgress();
+    }
+
+    let isSeeking = false;
+
+    progressBar.addEventListener("mousedown", (e) => {
+      isSeeking = true;
+      seekFromEvent(e);
+      progressThumb!.style.opacity = "1";
+    });
+
+    function onMouseMove(e: MouseEvent) {
+      if (!isSeeking) return;
+      seekFromEvent(e);
+    }
+
+    function onMouseUp() {
+      if (!isSeeking) return;
+      isSeeking = false;
+      progressThumb!.style.opacity = "";
+    }
+
+    document.addEventListener("mousemove", onMouseMove);
+    document.addEventListener("mouseup", onMouseUp);
+
+    // Touch support for progress bar
+    progressBar.addEventListener("touchstart", (e) => {
+      isSeeking = true;
+      const touch = e.touches[0];
+      seekFromEvent(touch as unknown as MouseEvent);
+      progressThumb!.style.opacity = "1";
+    });
+
+    function onTouchMove(e: TouchEvent) {
+      if (!isSeeking) return;
+      const touch = e.touches[0];
+      seekFromEvent(touch as unknown as MouseEvent);
+    }
+
+    function onTouchEnd() {
+      if (!isSeeking) return;
+      isSeeking = false;
+      progressThumb!.style.opacity = "";
+    }
+
+    document.addEventListener("touchmove", onTouchMove);
+    document.addEventListener("touchend", onTouchEnd);
+
+    // Click handlers for tracklist
+    trackItems.forEach((item) => {
+      item.addEventListener("click", () => {
+        setActive(Number(item.dataset.index));
+      });
+    });
+
+    // Previous/Next track buttons
+    function getActiveIndex() {
+      const current = document.querySelector(".track-item.is-active");
+      return current ? Number(current.getAttribute("data-index")) : 0;
+    }
+
+    document.getElementById("prev-track")?.addEventListener("click", () => {
+      const idx = getActiveIndex();
+      if (idx > 0) setActive(idx - 1);
+    });
+
+    document.getElementById("next-track")?.addEventListener("click", () => {
+      const idx = getActiveIndex();
+      if (idx < trackItems.length - 1) setActive(idx + 1);
+    });
+
+    // Auto-advance to next track
+    player.addEventListener("ended", () => {
+      const current = document.querySelector(".track-item.is-active");
+      if (!current) return;
+      const nextIndex = Number(current.getAttribute("data-index")) + 1;
+      if (nextIndex < trackItems.length) {
+        setActive(nextIndex);
+      }
+    });
+
+    // Keyboard shortcuts
+    const onKeyDown = (player: HTMLAudioElement) => (e: KeyboardEvent) => {
+      if (
+        e.target instanceof HTMLInputElement ||
+        e.target instanceof HTMLTextAreaElement
+      )
+        return;
+
+      switch (e.code) {
+        case "Space":
+          e.preventDefault();
+          player.paused ? player.play() : player.pause();
+          break;
+        case "ArrowRight":
+          e.preventDefault();
+          player.currentTime = Math.min(
+            player.currentTime + 5,
+            player.duration,
+          );
+          break;
+        case "ArrowLeft":
+          e.preventDefault();
+          player.currentTime = Math.max(player.currentTime - 5, 0);
+          break;
+      }
+    };
+
+    document.addEventListener("keydown", onKeyDown(player));
+
+    // Restore saved state or default to track 0
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      const { url, time } = JSON.parse(saved);
+      const matchingItem = Array.from(trackItems).find(
+        (item) => item.dataset.url === url,
+      );
+
+      if (!matchingItem) {
+        localStorage.removeItem(STORAGE_KEY);
+        setActive(0, false);
+        return;
+      }
+
+      setActive(Number(matchingItem.dataset.index), false);
+      player.addEventListener(
+        "loadedmetadata",
+        () => {
+          player.currentTime = time;
+        },
+        { once: true },
+      );
+    } else {
+      setActive(0, false);
+    }
+
+    // Lazy-load track durations on scroll with a processing queue
+    const durationEls =
+      document.querySelectorAll<HTMLSpanElement>(".track-duration");
+    const durationQueue: HTMLElement[] = [];
+    let activeLoaders = 0;
+    const MAX_LOADERS = 2;
+
+    function processQueue() {
+      while (activeLoaders < MAX_LOADERS && durationQueue.length > 0) {
+        const item = durationQueue.shift()!;
+        const idx = Number(item.dataset.index);
+        activeLoaders++;
+        const audio = new Audio();
+        audio.preload = "metadata";
+        audio.addEventListener("loadedmetadata", () => {
+          const el = durationEls[idx];
+          if (el) el.textContent = formatTime(audio.duration);
+          activeLoaders--;
+          processQueue();
+        });
+        audio.addEventListener("error", () => {
+          activeLoaders--;
+          processQueue();
+        });
+        audio.src = item.dataset.url!;
+      }
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            durationQueue.push(entry.target as HTMLElement);
+            observer.unobserve(entry.target);
+          }
+        }
+        processQueue();
+      },
+      { rootMargin: "100px" },
+    );
+
+    trackItems.forEach((item) => observer.observe(item));
+
+    // Store cleanup function to remove document-level listeners on re-init
+    cleanup = () => {
+      document.removeEventListener("mousemove", onMouseMove);
+      document.removeEventListener("mouseup", onMouseUp);
+      document.removeEventListener("touchmove", onTouchMove);
+      document.removeEventListener("touchend", onTouchEnd);
+      document.removeEventListener("keydown", onKeyDown(player));
+      observer.disconnect();
+    };
+  }
+
+  initAudioPlayer();
+  document.addEventListener("astro:after-swap", initAudioPlayer);
+</script>

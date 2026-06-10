@@ -1,0 +1,25 @@
+---
+import { VERSION } from "astro:env/client";
+import SocialLinks from "@/components/SocialLinks.astro";
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer
+  class="border-t border-gray-200 bg-white dark:border-neutral-800 dark:bg-neutral-900"
+>
+  <div class="mx-auto max-w-7xl px-4 py-8 lg:px-6">
+    <div class="flex flex-col items-center justify-between gap-4 sm:flex-row">
+      <!-- Copyright -->
+      <p class="text-sm text-gray-500 dark:text-neutral-400">
+        &copy; {currentYear} Dennis Pham
+      </p>
+
+      <!-- Version -->
+      <span class="text-xs text-gray-400 dark:text-neutral-500">{VERSION}</span>
+
+      <!-- Social links -->
+      <SocialLinks />
+    </div>
+  </div>
+</footer>

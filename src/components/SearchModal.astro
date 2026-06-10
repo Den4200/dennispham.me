@@ -1,0 +1,108 @@
+---
+import Search from "astro-pagefind/components/Search.astro";
+---
+
+<!-- Search modal backdrop -->
+<div
+  id="search-modal-backdrop"
+  class="fixed inset-0 z-50 hidden bg-black/50 backdrop-blur-sm"
+  aria-hidden="true"
+>
+  <div
+    id="search-modal-content"
+    class="mx-auto mt-[10vh] max-w-xl px-4"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Search"
+  >
+    <Search />
+  </div>
+</div>
+
+<script>
+  function syncSearchTheme() {
+    const container = document.getElementById("search-modal-content");
+    if (!container) return;
+    const isDark = document.documentElement.classList.contains("dark");
+    if (isDark) {
+      container.setAttribute("data-pf-theme", "dark");
+    } else {
+      container.removeAttribute("data-pf-theme");
+    }
+  }
+
+  function initSearchModal() {
+    const backdrop = document.getElementById("search-modal-backdrop");
+    const searchTrigger = document.getElementById("search-trigger");
+
+    if (!backdrop) return;
+
+    syncSearchTheme();
+
+    function openModal() {
+      syncSearchTheme();
+      backdrop!.classList.remove("hidden");
+      backdrop!.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+      setTimeout(() => {
+        const input = backdrop!.querySelector<HTMLInputElement>("input");
+        input?.focus();
+      }, 100);
+    }
+
+    function closeModal() {
+      backdrop!.classList.add("hidden");
+      backdrop!.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    }
+
+    // Open on trigger click
+    searchTrigger?.addEventListener("click", openModal);
+
+    // Close on backdrop click (but not on modal content)
+    backdrop.addEventListener("click", (e) => {
+      if (
+        e.target === backdrop ||
+        (e.target as Element).closest("#search-modal-content") === null
+      ) {
+        closeModal();
+      }
+    });
+
+    // Keyboard shortcuts
+    document.addEventListener("keydown", (e) => {
+      // Ctrl+K or Cmd+K to open
+      if ((e.ctrlKey || e.metaKey) && e.key === "k") {
+        e.preventDefault();
+        if (backdrop.classList.contains("hidden")) {
+          openModal();
+        } else {
+          closeModal();
+        }
+      }
+      // Escape to close
+      if (e.key === "Escape" && !backdrop.classList.contains("hidden")) {
+        closeModal();
+      }
+    });
+  }
+
+  // Sync theme when dark mode is toggled
+  new MutationObserver(() => syncSearchTheme()).observe(
+    document.documentElement,
+    {
+      attributes: true,
+      attributeFilter: ["class"],
+    },
+  );
+
+  initSearchModal();
+  document.addEventListener("astro:after-swap", initSearchModal);
+</script>
+
+<style is:global>
+  #search-modal-content {
+    --pf-font: inherit;
+    --pf-border-radius: 8px;
+  }
+</style>

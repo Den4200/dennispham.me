@@ -1,0 +1,12 @@
+.astro/
+.vscode/
+dist/
+node_modules/
+
+.env
+.env.example
+.gitignore
+.prettierignore
+.prettierrc
+eslint.config.mjs
+prek.toml

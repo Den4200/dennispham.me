@@ -1,0 +1,28 @@
+---
+import { getPhotoDimensions, type Asset } from "@/lib/immich";
+
+interface Props {
+  asset: Asset;
+}
+
+const { asset } = Astro.props;
+const { width, height } = getPhotoDimensions(asset);
+---
+
+<a
+  href={`/api/photos/${asset.id}/`}
+  target="_blank"
+  rel="noopener noreferrer"
+  class="mb-2 block"
+>
+  <img
+    src={`/api/photos/${asset.id}/`}
+    alt={asset.originalFileName}
+    width={width}
+    height={height}
+    style={`aspect-ratio: ${width}/${height};`}
+    class="w-full rounded bg-gray-200 text-transparent dark:bg-neutral-800"
+    loading="lazy"
+    decoding="async"
+  />
+</a>

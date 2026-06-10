@@ -1,0 +1,118 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import TableOfContents from "@/components/TableOfContents.astro";
+import CopyCodeButton from "@/components/CopyCodeButton.astro";
+import RelatedPosts from "@/components/RelatedPosts.astro";
+import { formatDate } from "@/lib/format-date";
+
+interface Props {
+  title: string;
+  description: string;
+  date: Date;
+  updatedDate?: Date;
+  tags?: string[];
+  headings?: { depth: number; slug: string; text: string }[];
+  readingTime?: string;
+  slug: string;
+}
+
+const {
+  title,
+  description,
+  date,
+  updatedDate,
+  tags,
+  headings = [],
+  readingTime,
+  slug,
+} = Astro.props;
+---
+
+<Layout title={title} description={description}>
+  <main class="mx-auto max-w-7xl px-4 py-16 lg:px-6 lg:py-24">
+    <!--
+      Responsive layout:
+      - < 900px: single column, article centered (max-w-3xl)
+      - 900px–1279px: grid with TOC column, article fills available space
+      - 1280px+: single column centered, TOC absolute in right margin
+    -->
+    <div
+      class="relative mx-auto max-w-3xl min-[900px]:grid min-[900px]:max-w-285 min-[900px]:grid-cols-[minmax(0,956px)_160px] min-[900px]:gap-6 xl:block xl:max-w-3xl"
+    >
+      <article
+        class="mx-auto max-w-3xl min-[900px]:mx-0 min-[900px]:max-w-none xl:mx-auto xl:max-w-3xl"
+      >
+        <header class="mb-10">
+          <div
+            class="flex items-center gap-2 text-sm text-gray-500 dark:text-neutral-500"
+          >
+            <time datetime={date.toISOString()}>
+              {formatDate(date)}
+            </time>
+            {
+              readingTime && (
+                <>
+                  <span>&middot;</span>
+                  <span>{readingTime}</span>
+                </>
+              )
+            }
+            {
+              updatedDate && (
+                <>
+                  <span>&middot;</span>
+                  <span>
+                    Updated{" "}
+                    <time datetime={updatedDate.toISOString()}>
+                      {formatDate(updatedDate)}
+                    </time>
+                  </span>
+                </>
+              )
+            }
+          </div>
+          <h1
+            class="mt-2 text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl dark:text-white"
+          >
+            {title}
+          </h1>
+          <p class="mt-4 text-lg text-gray-500 dark:text-neutral-400">
+            {description}
+          </p>
+          {
+            tags && tags.length > 0 && (
+              <div class="mt-4 flex flex-wrap gap-2">
+                {tags.map((tag) => (
+                  <a
+                    href={`/blog/tags/${tag}/`}
+                    class="rounded bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800 hover:bg-gray-200 dark:bg-neutral-800 dark:text-neutral-300 dark:hover:bg-neutral-700"
+                  >
+                    {tag}
+                  </a>
+                ))}
+              </div>
+            )
+          }
+        </header>
+
+        <div class="prose dark:prose-invert max-w-none">
+          <slot />
+        </div>
+        <CopyCodeButton />
+        {
+          tags && tags.length > 0 && (
+            <RelatedPosts currentSlug={slug} currentTags={tags} />
+          )
+        }
+      </article>
+
+      {
+        headings.length > 0 && (
+          <aside class="hidden min-[900px]:block xl:absolute xl:inset-y-0 xl:left-full xl:ml-6 xl:w-40">
+            <TableOfContents headings={headings} />
+          </aside>
+        )
+      }
+    </div>
+  </main>
+</Layout>

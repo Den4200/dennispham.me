@@ -1,0 +1,50 @@
+---
+import { getCollection } from "astro:content";
+import { formatDate } from "@/lib/format-date";
+
+interface Props {
+  currentSlug: string;
+  currentTags: string[];
+}
+
+const { currentSlug, currentTags } = Astro.props;
+
+const allPosts = await getCollection("blog", ({ id, data }) => {
+  return id !== currentSlug && !data.draft;
+});
+
+const scored = allPosts
+  .map((post) => {
+    const shared = (post.data.tags ?? []).filter((t) =>
+      currentTags.includes(t),
+    ).length;
+    return { post, shared };
+  })
+  .filter((item) => item.shared > 0)
+  .sort((a, b) => b.shared - a.shared)
+  .slice(0, 3);
+---
+
+{
+  scored.length > 0 && (
+    <section class="mt-16 border-t border-gray-200 pt-10 dark:border-neutral-700">
+      <h2 class="text-lg font-bold text-gray-900 dark:text-white">
+        Related posts
+      </h2>
+      <ul class="mt-4 space-y-4">
+        {scored.map(({ post }) => (
+          <li>
+            <a href={`/blog/${post.id}/`} class="group block">
+              <p class="font-medium text-gray-900 group-hover:underline dark:text-white">
+                {post.data.title}
+              </p>
+              <p class="mt-0.5 text-sm text-gray-500 dark:text-neutral-400">
+                {formatDate(post.data.date)}
+              </p>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )
+}

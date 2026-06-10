@@ -1,0 +1,62 @@
+---
+import { formatDate } from "@/lib/format-date";
+import { estimateReadingTime } from "@/lib/reading-time";
+
+interface Props {
+  post: {
+    id: string;
+    body?: string;
+    data: {
+      title: string;
+      description: string;
+      date: Date;
+      tags?: string[];
+    };
+  };
+  activeTag?: string;
+}
+
+const { post, activeTag } = Astro.props;
+---
+
+<div class="py-8 first:pt-0 last:pb-0">
+  <div
+    class="flex items-center gap-2 text-sm text-gray-500 dark:text-neutral-500"
+  >
+    <time datetime={post.data.date.toISOString()}>
+      {formatDate(post.data.date)}
+    </time>
+    <span>&middot;</span>
+    <span>{estimateReadingTime(post.body ?? "")}</span>
+  </div>
+  <h2 class="mt-1 text-xl font-bold text-gray-900 dark:text-white">
+    <a
+      href={`/blog/${post.id}/`}
+      class="hover:underline hover:decoration-amber-600"
+    >
+      {post.data.title}
+    </a>
+  </h2>
+  <p class="mt-2 text-gray-500 dark:text-neutral-400">
+    {post.data.description}
+  </p>
+  {
+    post.data.tags && post.data.tags.length > 0 && (
+      <div class="mt-3 flex flex-wrap gap-2">
+        {post.data.tags.map((tag) => (
+          <a
+            href={tag === activeTag ? "/blog/" : `/blog/tags/${tag}/`}
+            class:list={[
+              "rounded px-2.5 py-0.5 text-xs font-medium",
+              tag === activeTag
+                ? "bg-amber-600 text-white"
+                : "bg-gray-100 text-gray-800 hover:bg-gray-200 dark:bg-neutral-800 dark:text-neutral-300 dark:hover:bg-neutral-700",
+            ]}
+          >
+            {tag}
+          </a>
+        ))}
+      </div>
+    )
+  }
+</div>

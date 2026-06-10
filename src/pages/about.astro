@@ -1,0 +1,385 @@
+---
+import { Image } from "astro:assets";
+import Layout from "@/layouts/Layout.astro";
+import SocialLinks from "@/components/SocialLinks.astro";
+import dennis from "@/assets/dennis.jpg";
+
+const ROLLS_ROYCE_PATH =
+  "M13.363 3.663H9.961v6.865c-.41.196-.857.368-1.341.511a7.94 7.94 0 0 1-.776.182V3.968s.06-1.041-.519-1.393v-.13h5.434c.244.297.463.697.604 1.218zm.958 9.391c2.465-1.182 3.652-3.262 3.674-5.646.015-1.622-.557-2.618-1.197-3.148a1.883 1.883 0 0 0-.117-.089 6.454 6.454 0 0 0-.612-1.618c.118.017.227.036.324.057 1.788.38 3.225 1.436 3.905 3.474.554 1.662.285 3.724-.904 5.377-.281.391-1.03 1.226-1.89 1.842-.156.112-.25.174-.414.277 1.077 1.726 1.608 2.717 2.295 4.6.6 1.644 1.055 3.83 1.117 4.344.15 1.223.515 1.32.599 1.345V24h-4.295v-.13c.132-.07 1.293-.546 1.299-2.367.006-1.337-.32-2.808-.914-4.46a22.925 22.925 0 0 0-1.277-2.829l-.014-.021a8.355 8.355 0 0 1-.872.321c-.223-.516-.45-.983-.707-1.459zm-4.36-.144v1.116c.325-.014 1.34-.096 2.254-.274.207.468.387.912.511 1.257l.017.048a26.3 26.3 0 0 1-1.23.166 33.2 33.2 0 0 1-1.552.131v7.21c0 .159.037 1.008.59 1.306V24H7.254v-.13c.538-.283.59-1.147.59-1.305v-9.27a18.96 18.96 0 0 0 2.118-.385zm.457-11.66l-.462-.007H5.662v10.575c.426-.019 2.013-.152 3.052-.46 3.465-1.025 5.12-3.447 5.146-6.293.015-1.655-.568-2.672-1.222-3.212-.407-.337-.946-.496-1.338-.554-.22-.044-.71-.05-.882-.05zM3.502 20.557V1.554S3.564.492 2.972.133V0h7.346c.613.001 1.415.063 1.907.17 1.824.387 3.291 1.464 3.985 3.544.565 1.696.291 3.8-.922 5.487-.287.4-1.05 1.25-1.93 1.88a6.998 6.998 0 0 1-.422.281c1.1 1.762 1.641 2.773 2.343 4.695.612 1.677 1.076 3.909 1.14 4.432.151 1.248.525 1.374.61 1.4v.132h-4.382l-.001-.133c.136-.072 1.32-.583 1.326-2.442.007-1.363-.326-2.865-.932-4.55a23.36 23.36 0 0 0-1.305-2.887l-.014-.022c-.582.265-1.812.624-2.61.775-.571.108-1.15.197-1.865.277-.623.07-1.227.111-1.584.134v7.384c0 .161.038 1.028.603 1.332v.132H2.9v-.132c.549-.29.603-1.17.603-1.332Z";
+
+const MERCK_PATH =
+  "M6 6a6 6 0 0112 0zm0 12a6 6 0 016-6 6 6 0 01-6-6 6 6 0 000 12 a6 6 0 1012 0zm6-6a6 6 0 016 6 6 6 0 100-12c0 3.314-2.686 6-6 6";
+---
+
+<Layout
+  title="About Me"
+  description="About Dennis Pham - Platform Engineering Lead, homelab enthusiast, guitarist, photographer, and maker."
+>
+  <main class="mx-auto max-w-7xl px-4 py-16 lg:px-6 lg:py-24">
+    <!-- Hero section (Flowbite content section pattern) -->
+    <div class="mx-auto max-w-3xl text-center">
+      <Image
+        src={dennis}
+        alt="Dennis Pham"
+        width={200}
+        height={200}
+        class="mx-auto rounded-full bg-gray-200 text-transparent dark:bg-neutral-700"
+      />
+      <h1
+        class="mt-6 text-3xl font-extrabold tracking-tight text-gray-900 lg:text-4xl dark:text-white"
+      >
+        Dennis Pham
+      </h1>
+      <p
+        class="mt-2 inline-flex items-center gap-1 text-sm text-gray-500 dark:text-neutral-400"
+      >
+        <svg
+          class="h-4 w-4"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+          ><path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"></path><path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
+          ></path></svg
+        >
+        Philadelphia, PA
+      </p>
+      <SocialLinks class="mt-4 justify-center" />
+      <p class="mt-4 text-gray-500 sm:text-lg dark:text-neutral-400">
+        I'm a Platform Engineering Lead at Rolls-Royce who enjoys building tools
+        and infrastructure that make other engineers' lives easier. When I'm not
+        working, you'll find me tinkering with my homelab, playing guitar,
+        taking photos, or picking up a new hobby.
+      </p>
+    </div>
+
+    <!-- Work Experience (Flowbite timeline component) -->
+    <section class="mx-auto mt-16 max-w-3xl pl-4">
+      <h2
+        class="mb-8 text-2xl font-extrabold tracking-tight text-gray-900 dark:text-white"
+      >
+        Experience
+      </h2>
+
+      <ol class="relative border-s border-gray-200 dark:border-neutral-700">
+        <!-- Rolls-Royce: Platform Engineering Lead -->
+        <li class="ms-8 mb-10">
+          <span
+            class="absolute -inset-s-5 flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 ring-4 ring-white dark:ring-neutral-900"
+          >
+            <svg
+              class="h-5 w-5 text-[#10069F]"
+              role="img"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor"
+              ><title>Rolls-Royce</title><path d={ROLLS_ROYCE_PATH}></path></svg
+            >
+          </span>
+          <time
+            class="mb-1 text-sm font-normal text-gray-500 dark:text-neutral-400"
+          >
+            Jan 2026 - Present · Remote
+          </time>
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+            Platform Engineering Lead
+          </h3>
+          <p class="text-sm font-semibold text-gray-700 dark:text-neutral-300">
+            Rolls-Royce
+          </p>
+        </li>
+
+        <!-- Rolls-Royce: Platform Engineering Intern -->
+        <li class="ms-8 mb-10">
+          <span
+            class="absolute -inset-s-5 flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 ring-4 ring-white dark:ring-neutral-900"
+          >
+            <svg
+              class="h-5 w-5 text-[#10069F]"
+              role="img"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor"
+              ><title>Rolls-Royce</title><path d={ROLLS_ROYCE_PATH}></path></svg
+            >
+          </span>
+          <time
+            class="mb-1 text-sm font-normal text-gray-500 dark:text-neutral-400"
+          >
+            May 2023 - Jan 2026 · Indianapolis, IN
+          </time>
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+            Platform Engineering Intern
+          </h3>
+          <p
+            class="mb-3 text-sm font-semibold text-gray-700 dark:text-neutral-300"
+          >
+            Rolls-Royce
+          </p>
+          <ul
+            class="list-disc space-y-1 pl-5 text-sm font-normal text-gray-600 dark:text-neutral-300"
+          >
+            <li>
+              Architected and deployed private Kubernetes clusters on Azure with
+              Argo CD, Istio, Calico, Prometheus, Grafana, and Kiali, securely
+              connected to the on-premises network
+            </li>
+            <li>
+              Built a developer platform with integrated SSO via Microsoft Entra
+              ID through Envoy proxy, abstracting authentication away from
+              application code
+            </li>
+            <li>
+              Collaborated on IaC to automate provisioning of infrastructure on
+              Azure with Terraform and GitOps workflows
+            </li>
+            <li>
+              Implemented a standard web framework for internal applications
+              with autogenerated CRUD GraphQL resolvers, RBAC, and reusable
+              GitHub workflows
+            </li>
+            <li>
+              Integrated SAST, DAST, and SBOM generation into CI pipelines
+              across all repositories
+            </li>
+            <li>
+              Implemented caching in CI for tests and Docker builds to
+              significantly reduce job execution time
+            </li>
+          </ul>
+        </li>
+
+        <!-- Merck: Data Science Researcher (2024-2025) -->
+        <li class="ms-8 mb-10">
+          <span
+            class="absolute -inset-s-5 flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 ring-4 ring-white dark:ring-neutral-900"
+          >
+            <svg
+              class="h-5 w-5 text-[#00857C]"
+              role="img"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor"
+              ><title>Merck</title><path d={MERCK_PATH}></path></svg
+            >
+          </span>
+          <time
+            class="mb-1 text-sm font-normal text-gray-500 dark:text-neutral-400"
+          >
+            Aug 2024 - May 2025 · Remote
+          </time>
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+            Data Science Researcher
+          </h3>
+          <p
+            class="mb-1 text-sm font-semibold text-gray-700 dark:text-neutral-300"
+          >
+            Merck
+          </p>
+          <ul
+            class="list-disc space-y-1 pl-5 text-sm font-normal text-gray-600 dark:text-neutral-300"
+          >
+            <li>
+              Publication: <a
+                href="https://doi.org/10.1109/ICSC64641.2025.00021"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="link">doi.org/10.1109/ICSC64641.2025.00021</a
+              > (IEEE ICSC 2025)
+            </li>
+            <li>
+              Built an ETL pipeline for SDS documents with Apache Airflow to
+              generate chemical ontologies
+            </li>
+            <li>
+              Created an information retrieval library leveraging VLMs for
+              document retrieval and data extraction using taxonomy embeddings
+            </li>
+            <li>
+              Managed infrastructure on AWS with Terraform and deployed
+              applications to EKS with GitOps
+            </li>
+            <li>
+              Developed an end-user web application with Next.js to generate
+              chemical shipping cover sheets from extracted SDS data
+            </li>
+          </ul>
+        </li>
+
+        <!-- Merck: Data Science Researcher (2022-2023) -->
+        <li class="ms-8 mb-10">
+          <span
+            class="absolute -inset-s-5 flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 ring-4 ring-white dark:ring-neutral-900"
+          >
+            <svg
+              class="h-5 w-5 text-[#00857C]"
+              role="img"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor"
+              ><title>Merck</title><path d={MERCK_PATH}></path></svg
+            >
+          </span>
+          <time
+            class="mb-1 text-sm font-normal text-gray-500 dark:text-neutral-400"
+          >
+            Aug 2022 - May 2023 · West Lafayette, IN
+          </time>
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+            Data Science Researcher
+          </h3>
+          <p
+            class="mb-3 text-sm font-semibold text-gray-700 dark:text-neutral-300"
+          >
+            Merck
+          </p>
+          <ul
+            class="list-disc space-y-1 pl-5 text-sm font-normal text-gray-600 dark:text-neutral-300"
+          >
+            <li>
+              Developed an automated pipeline to process SDS documents and
+              generate packing sheets, resulting in a 235x improvement in speed
+              over the manual process
+            </li>
+            <li>
+              Built a Python parsing library to convert SDS PDFs to JSON for
+              programmatic access of chemical attributes
+            </li>
+            <li>
+              Created a full stack web application (PostgreSQL / S3 / FastAPI /
+              Next.js) to upload, process, and view SDS documents
+            </li>
+          </ul>
+        </li>
+
+        <!-- Purdue University -->
+        <li class="ms-8">
+          <span
+            class="absolute -inset-s-5 flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 ring-4 ring-white dark:ring-neutral-900"
+          >
+            <svg
+              class="h-6 w-6"
+              role="img"
+              viewBox="3 1 80 44"
+              xmlns="http://www.w3.org/2000/svg"
+              ><title>Purdue University</title><path
+                fill="#000000"
+                stroke="#CFB991"
+                stroke-width="2"
+                d="M68.21985,5.00684H22.34026l-3.00758,7.06973h8.85188L19.371,32.77025H10.50141L7.49088,39.84H41.1693l3.01052-7.06973H35.18654l2.5451-5.97392H58.94083c12.157,0,15.21464-5.14911,17.67431-10.89916S80.3945,4.998,68.23751,4.998M56.60486,19.72661h-15.848l3.26386-7.65888h15.848c2.80433,0,3.93549,1.44046,2.91921,3.82944a6.48381,6.48381,0,0,1-6.186,3.82944"
+              ></path></svg
+            >
+          </span>
+          <time
+            class="mb-1 text-sm font-normal text-gray-500 dark:text-neutral-400"
+          >
+            Aug 2022 - Dec 2025 · West Lafayette, IN
+          </time>
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+            Computer Science, B.S.
+          </h3>
+          <p class="text-sm font-semibold text-gray-700 dark:text-neutral-300">
+            Purdue University
+          </p>
+        </li>
+      </ol>
+    </section>
+    <section class="mx-auto mt-16 max-w-3xl">
+      <h2
+        class="mb-6 text-2xl font-extrabold tracking-tight text-gray-900 dark:text-white"
+      >
+        Technologies
+      </h2>
+      <div class="flex flex-wrap gap-2">
+        {
+          [
+            "Kubernetes",
+            "Azure",
+            "AWS",
+            "Terraform",
+            "Crossplane",
+            "GitOps",
+            "Argo CD",
+            "Istio",
+            "Envoy",
+            "Cilium",
+            "Rook Ceph",
+            "Backstage",
+            "Grafana",
+            "Prometheus",
+            "Loki",
+            "OpenTelemetry",
+            "Kyverno",
+            "GitHub Actions",
+            "Ansible",
+            "Docker",
+            "Rust",
+            "Go",
+            "Python",
+            "TypeScript",
+            "Next.js",
+            "React",
+            "FastAPI",
+            "PostgreSQL",
+          ].map((skill) => (
+            <span class="rounded bg-gray-100 px-2.5 py-0.5 text-sm font-medium text-gray-800 dark:bg-neutral-800 dark:text-neutral-300">
+              {skill}
+            </span>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Beyond Work (Flowbite content section pattern) -->
+    <section class="mx-auto mt-16 max-w-3xl">
+      <h2
+        class="mb-6 text-2xl font-extrabold tracking-tight text-gray-900 dark:text-white"
+      >
+        Beyond Work
+      </h2>
+      <div class="space-y-4 text-gray-500 sm:text-lg dark:text-neutral-400">
+        <p>
+          I've spent the past 7+ years running <a
+            href="https://axolotl.cloud"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="link">Axolotl Cloud</a
+          >, a Kubernetes homelab that has been continuously rebuilt and
+          rearchitected over the years. It's where I experiment with new tools,
+          break things, and learn by doing. <a
+            href="https://docs.axolotl.cloud"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="link">Public docs</a
+          > are available if you're curious.
+        </p>
+        <p>
+          I also have a 3D printer that I use for making and prototyping, from
+          functional parts for around the house to enclosures for electronics
+          projects to custom gifts for friends and family.
+        </p>
+        <p>
+          Photography is another big one. I shoot with a Sony A7C II and enjoy
+          capturing people, landscapes, and travel moments. See the photos page
+          for a selection of my work!
+        </p>
+        <p>
+          I've been playing fingerstyle acoustic guitar for nearly a decade and
+          have recently started exploring electric. It's a great creative outlet
+          and a fun challenge to learn new techniques and songs!
+        </p>
+        <p>
+          Outside of all that, I also enjoy cooking, baking, hiking,
+          woodworking, and of course, traveling!
+        </p>
+      </div>
+    </section>
+  </main>
+</Layout>

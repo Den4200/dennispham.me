@@ -1,0 +1,35 @@
+<script>
+  function initCopyButtons() {
+    document.querySelectorAll(".prose pre").forEach((pre) => {
+      if (pre.querySelector(".copy-code-btn")) return;
+
+      const btn = document.createElement("button");
+      btn.className =
+        "copy-code-btn cursor-pointer absolute right-2 top-2 rounded bg-neutral-700 p-1.5 text-neutral-300 opacity-0 transition-opacity hover:bg-neutral-600 hover:text-white";
+      btn.setAttribute("aria-label", "Copy code");
+      btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>`;
+
+      pre.appendChild(btn);
+
+      pre.addEventListener("mouseenter", () => {
+        btn.style.opacity = "1";
+      });
+      pre.addEventListener("mouseleave", () => {
+        btn.style.opacity = "0";
+      });
+
+      btn.addEventListener("click", async () => {
+        const code = pre.querySelector("code");
+        const text = code ? (code.textContent ?? "") : (pre.textContent ?? "");
+        await navigator.clipboard.writeText(text);
+        btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
+        setTimeout(() => {
+          btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>`;
+        }, 2000);
+      });
+    });
+  }
+
+  initCopyButtons();
+  document.addEventListener("astro:after-swap", initCopyButtons);
+</script>
