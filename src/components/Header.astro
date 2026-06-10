@@ -1,6 +1,5 @@
 ---
 import { Image } from "astro:assets";
-import dennis from "@/assets/dennis.jpg";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -22,7 +21,7 @@ const currentPath = Astro.url.pathname;
       <!-- Branding -->
       <a href="/" class="flex items-center gap-3">
         <Image
-          src={dennis}
+          src="/dennis.jpg"
           alt="Dennis Pham"
           width={36}
           height={36}

@@ -3,7 +3,6 @@ import { Image } from "astro:assets";
 import Layout from "@/layouts/Layout.astro";
 import PhotoCard from "@/components/PhotoCard.astro";
 import GitHubIcon from "@/components/GitHubIcon.astro";
-import dennis from "@/assets/dennis.jpg";
 import { getPublishedPosts } from "@/lib/posts";
 import { formatDate } from "@/lib/format-date";
 import { projects } from "@/lib/projects";
@@ -23,7 +22,7 @@ const photos = [...album.assets].sort(() => Math.random() - 0.5).slice(0, 8);
     <div class="flex flex-col items-center gap-8 md:flex-row md:gap-12">
       <!-- Photo -->
       <Image
-        src={dennis}
+        src="/dennis.jpg"
         alt="Dennis Pham"
         width={180}
         height={180}
@@ -223,7 +222,7 @@ const photos = [...album.assets].sort(() => Math.random() - 0.5).slice(0, 8);
         {photos.map((asset) => <PhotoCard asset={asset} />)}
         <a
           href="/photos/"
-          class="mb-2 flex aspect-[3/2] items-center justify-center rounded bg-gray-100 text-gray-500 hover:bg-gray-200 hover:text-amber-600 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:bg-neutral-700"
+          class="mb-2 flex aspect-3/2 items-center justify-center rounded bg-gray-100 text-gray-500 hover:bg-gray-200 hover:text-amber-600 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:bg-neutral-700"
         >
           <span class="text-sm font-medium">View more &rarr;</span>
         </a>
