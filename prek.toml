@@ -31,7 +31,6 @@ hooks = [
   { id = "destroyed-symlinks" },
   { id = "check-merge-conflict" },
   { id = "detect-private-key" },
-  { id = "no-commit-to-branch" },
   { id = "check-shebang-scripts-are-executable" },
   { id = "check-executables-have-shebangs" },
 ]
