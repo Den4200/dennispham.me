@@ -28,6 +28,10 @@ export default defineConfig({
     mode: "standalone",
   }),
 
+  build: {
+    inlineStylesheets: "always", // Prevents FOUC by inlining critical CSS
+  },
+
   env: {
     schema: {
       IMMICH_ALBUM_ID: envField.string({
