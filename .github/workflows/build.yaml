@@ -17,6 +17,6 @@ jobs:
       id-token: write
       packages: write
     steps:
-      - uses: den4200/shared-workflows/actions/build-container-image@ca978df0e1935438eddefd8b6068eaf101fb9a47
+      - uses: den4200/shared-workflows/actions/build-container-image@c98afb38abede2da1bdc8fa8aaedc9310c35069e
         with:
-          password: ${{ github.token }}
+          image: ${{ github.actor }}/dennispham-me
