@@ -1,20 +1,16 @@
 ---
 import { Image } from "astro:assets";
 import Layout from "@/layouts/Layout.astro";
-import PhotoCard from "@/components/PhotoCard.astro";
+import PhotoGrid from "@/components/PhotoGrid.astro";
 import GitHubIcon from "@/components/GitHubIcon.astro";
 import { getPublishedPosts } from "@/lib/posts";
 import { formatDate } from "@/lib/format-date";
 import { projects } from "@/lib/projects";
 import { tracks } from "@/lib/guitar";
-import { getAlbum } from "@/lib/immich";
 import GuitarPlayer from "@/components/GuitarPlayer.astro";
 
 const posts = (await getPublishedPosts()).slice(0, 3);
 const featuredProjects = projects.slice(0, 4);
-
-const album = await getAlbum();
-const photos = [...album.assets].sort(() => Math.random() - 0.5).slice(0, 8);
 ---
 
 <Layout>
@@ -218,14 +214,8 @@ const photos = [...album.assets].sort(() => Math.random() - 0.5).slice(0, 8);
           View all &rarr;
         </a>
       </div>
-      <div class="mt-6 columns-1 gap-2 sm:columns-2 lg:columns-3">
-        {photos.map((asset) => <PhotoCard asset={asset} />)}
-        <a
-          href="/photos/"
-          class="mb-2 flex aspect-3/2 items-center justify-center rounded bg-gray-100 text-gray-500 hover:bg-gray-200 hover:text-amber-600 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:bg-neutral-700"
-        >
-          <span class="text-sm font-medium">View more &rarr;</span>
-        </a>
+      <div class="mt-6">
+        <PhotoGrid limit={8} shuffle showViewMore server:defer />
       </div>
     </section>
   </main>
