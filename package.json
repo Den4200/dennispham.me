@@ -29,7 +29,7 @@
     "@astrojs/sitemap": "^3.7.3",
     "@tailwindcss/typography": "^0.5.19",
     "@tailwindcss/vite": "^4.3.0",
-    "astro": "^6.4.2",
+    "astro": "^7.1.0",
     "astro-pagefind": "^2.0.0",
     "flowbite": "^4.0.2",
     "mdast-util-to-string": "^4.0.0",
